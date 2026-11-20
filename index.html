@@ -460,6 +460,10 @@ section{padding-top:48px}
 nav.top ul a.active{color:var(--ink)}
 nav.top ul a.active::after{content:"";display:block;height:2px;margin-top:3px;background:var(--mark);border-radius:2px}
 @media (prefers-reduced-motion:reduce){.rv{transform:none;transition:none}.dim{transition:none}}
+.about-panel{display:grid;grid-template-columns:1fr 1fr;gap:16px 40px}
+.about-panel p{max-width:none}
+.about-panel p:first-child{grid-column:1/-1;font-size:1.25rem;padding-bottom:6px;border-bottom:1px solid var(--line)}
+@media (max-width:760px){.about-panel{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
