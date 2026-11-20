@@ -7,12 +7,11 @@
 <meta name="description" content="Gabriel Lima — Mechanical Engineering student at UCF building autonomous robots and testing space hardware.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-/* Layout idea: the site is an engineering drawing set. Hero = title block, each project = one sheet with a sheet number, key results called out like dimensions. */
 :root{
   --paper:#060a14;
-  --sheet:rgba(13,21,40,.72);
+  --sheet:rgba(12,19,37,.9);
   --ink:#e6ecfb;
   --muted:#9fb0cc;
   --line:rgba(140,170,230,.22);
@@ -23,7 +22,7 @@
   --glow:0 0 0 1px rgba(143,176,255,.10),0 12px 40px rgba(0,0,0,.45);
   --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
   --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --mono:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:dark;
 }
 
@@ -40,7 +39,6 @@ a{color:var(--accent)}
 a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 
-/* nav */
 nav.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 nav.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:54px}
 .mark-name{font-family:var(--display);font-weight:700;font-size:1.3rem;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
@@ -49,7 +47,6 @@ nav.top ul a{color:var(--muted);text-decoration:none}
 nav.top ul a:hover{color:var(--accent)}
 @media (max-width:720px){nav.top ul{display:none}}
 
-/* title block hero */
 .hero{padding:44px 0 28px}
 .drawing{border:2px solid var(--ink);background:var(--sheet);position:relative}
 .drawing::before{content:"";position:absolute;inset:6px;border:1px solid var(--ink);pointer-events:none}
@@ -67,7 +64,6 @@ h1 span{color:var(--accent)}
 .hero-side{border-left:2px solid var(--ink);display:grid;grid-template-rows:1fr auto}
 .portrait{position:relative;overflow:hidden;border-bottom:2px solid var(--ink);min-height:240px}
 .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;filter:grayscale(.15)}
-/* title block table */
 .tb{display:grid;grid-template-columns:1fr 1fr;font-family:var(--mono);font-size:.74rem}
 .tb div{padding:8px 12px;border-top:1px solid var(--line);border-right:1px solid var(--line)}
 .tb div:nth-child(2n){border-right:none}
@@ -81,7 +77,6 @@ h1 span{color:var(--accent)}
   .hero-main{padding:34px 24px 28px}
 }
 
-/* dimension strip */
 .dims{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:28px 0 8px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .dim{padding:18px 16px 16px;border-right:1px solid var(--line)}
 .dim:last-child{border-right:none}
@@ -96,13 +91,11 @@ h1 span{color:var(--accent)}
 @media (max-width:820px){.dims{grid-template-columns:1fr 1fr}.dim:nth-child(2){border-right:none}.dim:nth-child(-n+2){border-bottom:1px solid var(--line)}}
 @media (max-width:420px){.dims{grid-template-columns:1fr}.dim{border-right:none;border-bottom:1px solid var(--line)}.dim:last-child{border-bottom:none}}
 
-/* sections */
 section{padding:56px 0 8px}
 .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:22px;border-bottom:2px solid var(--ink);padding-bottom:10px}
 .sec-head h2{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:2.2rem;letter-spacing:.02em;margin:0;line-height:1}
 .sec-head .count{font-family:var(--mono);font-size:.78rem;color:var(--muted);margin-left:auto;letter-spacing:.06em;text-transform:uppercase}
 
-/* sheet = project */
 .sheet{background:var(--sheet);border:1.5px solid var(--ink);margin-bottom:28px}
 .sheet-head{display:grid;grid-template-columns:auto 1fr auto;border-bottom:1.5px solid var(--ink)}
 .sheet-no{font-family:var(--display);font-weight:700;font-size:2.4rem;line-height:1;padding:14px 18px;border-right:1.5px solid var(--ink);color:var(--accent);display:flex;align-items:center;font-variant-numeric:tabular-nums}
@@ -147,7 +140,6 @@ section{padding:56px 0 8px}
 }
 
 
-/* design notes inside a sheet */
 .notes{border-top:1.5px solid var(--ink)}
 .note{display:grid;grid-template-columns:1fr 1.1fr;border-bottom:1px solid var(--line)}
 .note:last-child{border-bottom:none}
@@ -210,7 +202,6 @@ table.matrix{border-collapse:collapse;width:100%;min-width:760px;font-size:.88re
 .svg-pts circle{fill:var(--sheet);stroke:var(--accent);stroke-width:2}
 .svg-pts circle.hot{fill:var(--mark);stroke:var(--mark)}
 
-/* leadership + skills */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
 .card{background:var(--sheet);border:1.5px solid var(--ink);padding:18px 20px;display:flex;flex-direction:column;gap:8px}
 .card h4{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:1.3rem;margin:0;line-height:1.1}
@@ -221,7 +212,6 @@ table.matrix{border-collapse:collapse;width:100%;min-width:760px;font-size:.88re
 .skills h4{font-family:var(--mono);font-weight:500;font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin:0 0 8px}
 .skills p{margin:0;font-size:.95rem}
 
-/* contact */
 .contact{margin:64px 0 40px}
 .contact .drawing{padding:36px 36px 30px;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
 .contact h2{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:clamp(2.2rem,5vw,3.4rem);line-height:.95;margin:0 0 10px;text-wrap:balance}
@@ -233,14 +223,12 @@ table.matrix{border-collapse:collapse;width:100%;min-width:760px;font-size:.88re
 @media (max-width:760px){.contact .drawing{grid-template-columns:1fr;padding:28px 22px}}
 footer{font-family:var(--mono);font-size:.72rem;color:var(--muted);padding:0 0 40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;text-transform:uppercase;letter-spacing:.06em}
 
-/* lightbox */
 .lb{position:fixed;inset:0;background:rgba(8,14,22,.88);display:none;align-items:center;justify-content:center;padding:24px;z-index:50;flex-direction:column;gap:12px}
 .lb.open{display:flex}
 .lb img{max-height:82vh;max-width:min(1200px,100%);background:#fff;border:2px solid #fff}
 .lb p{color:#e6eef5;font-family:var(--mono);font-size:.8rem;margin:0;text-align:center;max-width:80ch}
 .lb button{all:unset;cursor:pointer;position:absolute;top:16px;right:20px;color:#fff;font-family:var(--mono);font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;border:1px solid #fff;padding:6px 12px}
 
-/* one orchestrated moment: dimension lines draw across on load */
 @media (prefers-reduced-motion:no-preference){
   .dimline i{transform-origin:left;animation:draw 1.1s cubic-bezier(.2,.7,.2,1) both}
   .dim:nth-child(2) .dimline i{animation-delay:.12s}
@@ -249,12 +237,11 @@ footer{font-family:var(--mono);font-size:.72rem;color:var(--muted);padding:0 0 4
   @keyframes draw{from{transform:scaleX(.15)}to{transform:scaleX(1)}}
 }
 
-/* ===== space theme across the portfolio ===== */
 body{background:radial-gradient(ellipse at 15% 0%,rgba(60,90,180,.18),transparent 55%),radial-gradient(ellipse at 90% 40%,rgba(160,80,140,.10),transparent 50%),radial-gradient(ellipse at 30% 100%,rgba(40,120,170,.12),transparent 55%),#060a14;background-attachment:fixed;background-size:auto}
 #bgstars{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
 main,nav.top,header.hero{position:relative}
 nav.top{background:rgba(6,10,20,.72);border-bottom-color:var(--line)}
-.drawing,.sheet,.card,.skills{border:1px solid var(--line)!important;background:var(--sheet);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:var(--glow);border-radius:10px;overflow:hidden}
+.drawing,.sheet,.card,.skills{border:1px solid var(--line)!important;background:var(--sheet);box-shadow:var(--glow);border-radius:12px;overflow:clip}
 .drawing::before{border-color:rgba(143,176,255,.10);border-radius:6px}
 .hero-side,.gallery,.contact .drawing{border-color:var(--line)!important}
 .hero-side{border-left:1px solid var(--line)!important}
@@ -301,7 +288,7 @@ h1 span{color:var(--accent)}
 .lb{background:rgba(3,5,12,.94)}
 footer{color:var(--muted)}
 
-.about-panel{border:1px solid var(--line);background:var(--sheet);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:var(--glow);border-radius:10px;padding:28px 32px;display:flex;flex-direction:column;gap:14px;font-size:1.04rem}
+.about-panel{border:1px solid var(--line);background:var(--sheet);box-shadow:var(--glow);border-radius:10px;padding:28px 32px;display:flex;flex-direction:column;gap:14px;font-size:1.04rem}
 .about-panel p{margin:0;max-width:70ch}
 .about-panel p:first-child{font-size:1.2rem;color:#fff}
 @media (max-width:600px){.about-panel{padding:22px 20px}}
@@ -331,7 +318,7 @@ footer{color:var(--muted)}
 .skill-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:-6px 0 16px;font-family:var(--mono);font-size:.7rem;color:var(--muted);letter-spacing:.04em}
 .skill-legend span{display:inline-flex;align-items:center;gap:6px}
 .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
-.skill-card{border:1px solid var(--line);background:var(--sheet);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:var(--glow);border-radius:10px;padding:18px 20px}
+.skill-card{border:1px solid var(--line);background:var(--sheet);box-shadow:var(--glow);border-radius:10px;padding:18px 20px}
 .skill-card h4{font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:1.2rem;margin:0 0 12px;color:var(--ink)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .skill{display:inline-flex;align-items:center;gap:6px;font-size:.86rem;line-height:1.2;padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--ink);text-decoration:none;transition:border-color .2s,background .2s,box-shadow .2s,transform .2s}
@@ -372,7 +359,6 @@ a.skill:hover,a.skill:focus-visible{border-color:var(--accent);background:rgba(9
 .mini-grid img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
 .mini-grid figcaption{font-family:var(--mono);font-size:.66rem;color:var(--muted);padding:5px 8px}
 button.sheet-no{all:unset;font-family:var(--display);font-weight:700;font-size:2.4rem;line-height:1;padding:14px 18px;border-right:1px solid var(--line);color:var(--accent);display:flex;align-items:center;cursor:pointer;position:relative;text-shadow:0 0 18px rgba(143,176,255,.55);transition:color .2s,text-shadow .2s}
-button.sheet-no::after{content:"\2726";position:absolute;top:6px;right:5px;font-size:.6rem;color:var(--mark);text-shadow:0 0 8px rgba(255,176,138,.9);animation:twk 2.4s ease-in-out infinite}
 button.sheet-no:hover,button.sheet-no:focus-visible,button.sheet-no[aria-expanded="true"]{color:#ffd9bf;text-shadow:0 0 22px rgba(255,180,130,.9)}
 button.sheet-no:focus-visible{outline:1px dashed var(--mark);outline-offset:-4px}
 .sheet-head{position:relative}
@@ -387,12 +373,11 @@ button.sheet-no:focus-visible{outline:1px dashed var(--mark);outline-offset:-4px
 .orbit-menu a:hover::before,.orbit-menu a:focus-visible::before{background:var(--mark);box-shadow:0 0 10px 3px rgba(255,176,138,.9)}
 .orbit-menu small{display:block;font-family:var(--mono);font-size:.66rem;color:var(--muted);margin-top:1px}
 @keyframes orbitIn{from{opacity:0;transform:translateY(-6px) scale(.97)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.orbit-menu,button.sheet-no::after{animation:none}}
-/* ===== star landing ===== */
+@media (prefers-reduced-motion:reduce){.orbit-menu,}
 #space{position:fixed;inset:0;z-index:100;background:radial-gradient(ellipse at 50% 40%,#101a33 0%,#070b16 60%,#04060c 100%);color:#e8eefc;overflow:hidden;transition:opacity .5s ease}
 #space.gone{opacity:0;pointer-events:none}
 #starfield,#lines{position:absolute;inset:0;width:100%;height:100%}
-#lines line{stroke:rgba(150,180,255,.28);stroke-width:1;stroke-dasharray:3 5}
+#lines line{stroke:rgba(160,190,255,.5);stroke-width:1.3;stroke-dasharray:4 5}
 #lines line.hot{stroke:rgba(255,190,150,.6)}
 .space-title{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;transition:opacity .35s ease}
 #space.cluster-open .space-title{opacity:.12}
@@ -425,11 +410,60 @@ body.space-open{overflow:hidden}
 }
 @media (prefers-reduced-motion:reduce){.cluster .node,.node.idle .dot{animation:none}#space{transition:none}}
 
+
+.thesis{font-size:1.12rem;color:var(--muted)}
+.hero-links{margin-top:2px}
+.hero-contact{margin-top:8px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.hero-contact .status{display:flex;align-items:center;gap:10px;font-size:.84rem;color:#a9f0cf;letter-spacing:.02em}
+.hero-contact .status i{width:8px;height:8px;border-radius:50%;background:#5fe0a6;box-shadow:0 0 0 4px rgba(95,224,166,.15)}
+.hero-contact dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:.92rem}
+.hero-contact dt{color:var(--muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.1em;padding-top:3px}
+.hero-contact dd{margin:0;word-break:break-word}
+.hero-contact a{color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(143,176,255,.4)}
+.hero-contact a:hover{color:var(--accent);border-color:var(--accent)}
+.copybtn{font-family:var(--body)}
+
+.dims{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:22px 0 6px;border:none!important}
+.dim{position:relative;display:flex;flex-direction:column;gap:8px;padding:22px 20px 18px;border:1px solid var(--line)!important;border-radius:12px;background:linear-gradient(160deg,rgba(30,46,92,.75),rgba(10,16,32,.92));box-shadow:0 10px 30px rgba(0,0,0,.35);text-decoration:none;color:var(--ink);overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+.dim::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--mark));opacity:.85}
+.dim::after{content:"";position:absolute;width:160px;height:160px;right:-60px;top:-60px;border-radius:50%;background:radial-gradient(circle,rgba(143,176,255,.25),transparent 70%);transition:transform .5s}
+.dim:hover,.dim:focus-visible{transform:translateY(-8px);border-color:rgba(255,190,150,.55)!important;box-shadow:0 22px 50px rgba(0,0,0,.5),0 0 40px rgba(255,170,120,.18);outline:none}
+.dim:hover::after{transform:scale(1.6)}
+.dim .val{font-size:3rem;text-shadow:0 0 24px rgba(143,176,255,.45)}
+.dim p{margin:0;font-size:.9rem;color:var(--muted);line-height:1.45;flex:1}
+.dim .go{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mark);opacity:.7;transition:opacity .3s,transform .3s}
+.dim:hover .go{opacity:1;transform:translateX(4px)}
+@media (max-width:820px){.dims{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.dims{grid-template-columns:1fr}}
+
+.copy ul,.revs{list-style:none;margin:0 0 0 6px;padding:0;display:flex;flex-direction:column;gap:0;border-left:2px solid rgba(143,176,255,.45)}
+.copy li{position:relative;padding:6px 0 6px 20px;max-width:62ch}
+.copy li::before,.revs li::before{content:"";position:absolute;left:-7px;top:calc(6px + .8em - 6px);width:12px;height:12px;box-sizing:border-box;border-radius:50%;background:#0b1324;border:2px solid var(--mark);box-shadow:none}
+.revs li{display:grid;grid-template-columns:76px 1fr;gap:12px;padding:6px 0 6px 20px;position:relative;font-size:.95rem;line-height:1.6}
+.revs li::before{top:calc(6px + .8em - 6px)}
+.revs span{font-size:.72rem;letter-spacing:.08em;line-height:1.6rem;padding-top:0;font-weight:600}
+.copy li:hover::before,.revs li:hover::before{background:var(--mark)}
+
+@media (min-width:861px){
+  .sheet-body>.copy,.note-body{position:sticky;top:72px;align-self:start}
+}
+.constel{flex:none;height:230px;min-height:0}
+.constel svg{max-height:190px}
+.gallery img{max-height:280px}
+.gallery video{max-height:420px}
+.sheet{margin-bottom:34px}
+section{padding-top:48px}
+
+.sheet,.card,.skill-card,.about-panel,.dim{will-change:auto}
+.rv{transform:translateY(26px) scale(.985);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{transform:none}
+nav.top ul a.active{color:var(--ink)}
+nav.top ul a.active::after{content:"";display:block;height:2px;margin-top:3px;background:var(--mark);border-radius:2px}
+@media (prefers-reduced-motion:reduce){.rv{transform:none;transition:none}.dim{transition:none}}
 </style>
 </head>
 <body>
 <canvas id="bgstars" aria-hidden="true"></canvas>
-<!-- STAR LANDING -->
 <div id="space" role="dialog" aria-modal="true" aria-label="Star map navigation">
   <canvas id="starfield" aria-hidden="true"></canvas>
   <svg id="lines" aria-hidden="true"></svg>
@@ -438,17 +472,17 @@ body.space-open{overflow:hidden}
     <h1 class="space-name">Gabriel Lima</h1>
     <p class="space-hint">Pick a star to explore</p>
   </div>
-  <button class="node" data-key="about" data-go="about" style="--x:22%;--y:30%"><span class="dot"></span><span class="lbl">About</span></button>
-  <button class="node big" data-key="projects" style="--x:76%;--y:34%" aria-expanded="false"><span class="dot"></span><span class="lbl">Projects</span><span class="sub">5 builds</span></button>
-  <button class="node" data-key="skills" data-go="skills" style="--x:28%;--y:74%"><span class="dot"></span><span class="lbl">Skills</span></button>
-  <button class="node" data-key="leadership" data-go="leadership" style="--x:58%;--y:80%"><span class="dot"></span><span class="lbl">Leadership</span></button>
-  <button class="node" data-key="contact" data-go="contact" style="--x:85%;--y:72%"><span class="dot"></span><span class="lbl">Contact</span></button>
+  <button class="node" data-key="about" data-go="about" style="--x:24%;--y:17%"><span class="dot"></span><span class="lbl">About</span></button>
+  <button class="node big" data-key="projects" style="--x:76%;--y:17%" aria-expanded="false"><span class="dot"></span><span class="lbl">Projects</span><span class="sub">5 builds</span></button>
+  <button class="node" data-key="skills" data-go="skills" style="--x:13%;--y:80%"><span class="dot"></span><span class="lbl">Skills</span></button>
+  <button class="node" data-key="leadership" data-go="leadership" style="--x:50%;--y:76%"><span class="dot"></span><span class="lbl">Leadership</span></button>
+  <button class="node" data-key="contact" data-go="contact" style="--x:87%;--y:80%"><span class="dot"></span><span class="lbl">Contact</span></button>
   <div class="cluster" id="cluster" hidden>
-    <button class="node child" data-go="scorpion" style="--x:62%;--y:14%"><span class="dot"></span><span class="lbl">Robotic Scorpion</span></button>
-    <button class="node child" data-go="ai-racer" style="--x:87%;--y:14%"><span class="dot"></span><span class="lbl">AI Racer · 1st</span></button>
-    <button class="node child" data-go="cavrel" style="--x:88%;--y:47%"><span class="dot"></span><span class="lbl">Self-Driving Research</span></button>
-    <button class="node child" data-go="rocketshpe" style="--x:74%;--y:57%"><span class="dot"></span><span class="lbl">Rocket Payload</span></button>
-    <button class="node child" data-go="fsi" style="--x:59%;--y:46%"><span class="dot"></span><span class="lbl">CubeSat Mission</span></button>
+    <button class="node child" data-go="scorpion" style="--x:58%;--y:9%"><span class="dot"></span><span class="lbl">Robotic Scorpion</span></button>
+    <button class="node child" data-go="ai-racer" style="--x:92%;--y:8%"><span class="dot"></span><span class="lbl">AI Racer · 1st</span></button>
+    <button class="node child" data-go="cavrel" style="--x:93%;--y:32%"><span class="dot"></span><span class="lbl">Self-Driving Research</span></button>
+    <button class="node child" data-go="rocketshpe" style="--x:79%;--y:40%"><span class="dot"></span><span class="lbl">Rocket Payload</span></button>
+    <button class="node child" data-go="fsi" style="--x:62%;--y:31%"><span class="dot"></span><span class="lbl">CubeSat Mission</span></button>
   </div>
   <button class="skip" id="skip" type="button">Skip to portfolio ↓</button>
 </div>
@@ -476,11 +510,18 @@ body.space-open{overflow:hidden}
         <div class="hero-main">
           <div class="eyebrow">Mechanical Engineering · Robotics &amp; Space Systems</div>
           <h1>Gabriel<br><span>Lima</span></h1>
-          <p class="thesis">I build things that move on their own and survive harsh environments, from autonomous race cars to rocket payloads.</p>
+          <p class="thesis">Mechanical engineering student at UCF building autonomous race cars, robots and rocket payload hardware.</p>
           <div class="hero-links">
             <a class="btn primary" href="#projects">See the work</a>
-            <a class="btn" href="https://www.linkedin.com/in/gabriel-lima-4901a23a9">LinkedIn</a>
-            <a class="btn" href="#contact">Get in touch</a>
+            <a class="btn" href="#about">About me</a>
+          </div>
+          <div class="hero-contact" id="contact">
+            <div class="status"><i></i>Open to robotics, autonomy &amp; aerospace internships</div>
+            <dl>
+              <dt>Email</dt><dd><a href="mailto:gabelima007@gmail.com">gabelima007@gmail.com</a><button class="copybtn" type="button" data-copy="gabelima007@gmail.com">Copy</button></dd>
+              <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/gabriel-lima-4901a23a9">in/gabriel-lima-4901a23a9</a></dd>
+              <dt>Based in</dt><dd>Orlando, FL</dd>
+            </dl>
           </div>
         </div>
         <div class="hero-side">
@@ -497,10 +538,10 @@ body.space-open{overflow:hidden}
     </div>
 
     <div class="dims" aria-label="Key results">
-      <div class="dim"><div class="val">1<small>st</small></div><div class="dimline"><i></i></div><p>Place, UCF AI Racer Grand Prix 2026, with a record top speed</p></div>
-      <div class="dim"><div class="val">−23<small>%</small></div><div class="dimline"><i></i></div><p>Average collision rate after suspension tuning on F1TENTH cars</p></div>
-      <div class="dim"><div class="val">31<small>g</small></div><div class="dimline"><i></i></div><p>Sustained-load test level set for an IREC 2027 rocket payload</p></div>
-      <div class="dim"><div class="val">−52<small>%</small></div><div class="dimline"><i></i></div><p>Tail servo holding torque on a robotic scorpion (4.37 → 2.1 kg·cm)</p></div>
+      <a class="dim" href="#ai-racer"><div class="val"><span class="cnt" data-to="1">1</span><small>st</small></div><p>Place at the UCF AI Racer Grand Prix 2026, with a record top speed</p><span class="go">AI Racer →</span></a>
+      <a class="dim" href="#cavrel"><div class="val">−<span class="cnt" data-to="23">23</span><small>%</small></div><p>Average collision rate after suspension tuning on F1TENTH cars</p><span class="go">Research →</span></a>
+      <a class="dim" href="#rocketshpe"><div class="val"><span class="cnt" data-to="31">31</span><small>g</small></div><p>Sustained-load test level set for an IREC 2027 rocket payload</p><span class="go">Payload →</span></a>
+      <a class="dim" href="#scorpion"><div class="val">−<span class="cnt" data-to="52">52</span><small>%</small></div><p>Tail servo holding torque on the robotic scorpion (4.37 → 2.1 kg·cm)</p><span class="go">Scorpion →</span></a>
     </div>
   </header>
 
@@ -518,8 +559,7 @@ body.space-open{overflow:hidden}
   <section id="projects">
     <div class="sec-head"><h2><button class="sec-star" type="button" aria-label="Open the star map" title="Back to the star map">✦</button>Projects</h2><span class="count">5 missions</span></div>
 
-    <!-- SHEET 01 -->
-    <article class="sheet" id="ai-racer">
+        <article class="sheet" id="ai-racer">
       <div class="sheet-head">
         <button class="sheet-no" type="button" aria-haspopup="true" aria-expanded="false" title="Explore this project">01</button>
         <div class="sheet-title"><h3>AI Racer Grand Prix: 1st Place</h3><div class="role">Mechanical / Electrical Engineer · Team SHPE UCF</div></div>
@@ -546,8 +586,7 @@ body.space-open{overflow:hidden}
       </div>
     </article>
 
-    <!-- SHEET 02 -->
-    <article class="sheet" id="cavrel">
+        <article class="sheet" id="cavrel">
       <div class="sheet-head">
         <button class="sheet-no" type="button" aria-haspopup="true" aria-expanded="false" title="Explore this project">02</button>
         <div class="sheet-title"><h3>Autonomous Driving Research</h3><div class="role">Research Assistant · CAVREL Lab, UCF</div></div>
@@ -575,8 +614,7 @@ body.space-open{overflow:hidden}
       </div>
     </article>
 
-    <!-- SHEET 03 -->
-    <article class="sheet" id="rocketshpe">
+        <article class="sheet" id="rocketshpe">
       <div class="sheet-head">
         <button class="sheet-no" type="button" aria-haspopup="true" aria-expanded="false" title="Explore this project">03</button>
         <div class="sheet-title"><h3>IREC 2027 Rocket Payload Test Campaign</h3><div class="role">Lead Test Engineer · RocketSHPE (SHPE UCF × Knights Experimental Rocketry)</div></div>
@@ -717,8 +755,7 @@ body.space-open{overflow:hidden}
       </div>
     </article>
 
-    <!-- SHEET 04 -->
-    <article class="sheet" id="scorpion">
+        <article class="sheet" id="scorpion">
       <div class="sheet-head">
         <button class="sheet-no" type="button" aria-haspopup="true" aria-expanded="false" title="Explore this project">04</button>
         <div class="sheet-title"><h3>Robotic Scorpion Hexapod</h3><div class="role">Mechanical Engineer · Project STRIDE, UCF STEEL · Tail, claws &amp; chassis design</div></div>
@@ -750,8 +787,7 @@ body.space-open{overflow:hidden}
 
       
 
-      <!-- design notes -->
-      <div class="notes">
+            <div class="notes">
         <div class="note" id="tail-design">
           <div class="note-head"><span class="note-no">04-A</span><h4>Tail design</h4></div>
           <div class="note-body">
@@ -827,8 +863,7 @@ body.space-open{overflow:hidden}
       </div>
     </article>
 
-    <!-- SHEET 05 -->
-    <article class="sheet" id="fsi">
+        <article class="sheet" id="fsi">
       <div class="sheet-head">
         <button class="sheet-no" type="button" aria-haspopup="true" aria-expanded="false" title="Explore this project">05</button>
         <div class="sheet-title"><h3>S.A.I.L. CubeSat Mission Design</h3><div class="role">Mission Designer · Florida Space Institute CubeSat Mission Design Workshop</div></div>
@@ -934,21 +969,6 @@ body.space-open{overflow:hidden}
     </div>
   </section>
 
-  <section class="contact" id="contact">
-    <div class="drawing">
-      <div>
-        <div class="eyebrow">Status: open to opportunities</div>
-        <h2>Let's build something that moves.</h2>
-        <p>I'm looking for internships in robotics, autonomy, aerospace hardware and test engineering.</p>
-      </div>
-      <dl>
-        <dt>Email</dt><dd><a href="mailto:gabelima007@gmail.com">gabelima007@gmail.com</a><button class="copybtn" type="button" data-copy="gabelima007@gmail.com">Copy</button></dd>
-        <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/gabriel-lima-4901a23a9">in/gabriel-lima-4901a23a9</a></dd>
-        <dt>Based in</dt><dd>Orlando, FL</dd>
-      </dl>
-    </div>
-  </section>
-
   <footer><span>Gabriel Lima · Portfolio</span><span>✦ Orlando, FL</span></footer>
 </div>
 </main>
@@ -1018,7 +1038,7 @@ body.space-open{overflow:hidden}
   }
   function center(el){var r=el.querySelector('.dot').getBoundingClientRect(),b=space.getBoundingClientRect();return[r.left+r.width/2-b.left,r.top+r.height/2-b.top];}
   function drawLines(){
-    var keys=['about','projects','contact','leadership','skills','about'],out='';
+    var keys=['skills','about','leadership','projects','contact'],out='';
     for(var i=0;i<keys.length-1;i++){var a=center(space.querySelector('[data-key="'+keys[i]+'"]')),b=center(space.querySelector('[data-key="'+keys[i+1]+'"]'));
       out+='<line x1="'+a[0]+'" y1="'+a[1]+'" x2="'+b[0]+'" y2="'+b[1]+'"/>';}
     if(!cluster.hidden){var p=center(projBtn);cluster.querySelectorAll('.node').forEach(function(c){var q=center(c);out+='<line class="hot" x1="'+p[0]+'" y1="'+p[1]+'" x2="'+q[0]+'" y2="'+q[1]+'"/>';});}
@@ -1088,6 +1108,25 @@ document.querySelectorAll('.gallery').forEach(function(g){
   });
   document.addEventListener('click',function(e){if(openMenu&&!openMenu.el.contains(e.target))close();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&openMenu){var b=openMenu.btn;close();b.focus();}});
+})();
+</script>
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce){
+    document.querySelectorAll('.cnt').forEach(function(el){var to=+el.dataset.to,t0=null;if(to<5)return;el.textContent='0';
+      function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/1100),e=1-Math.pow(1-k,3);el.textContent=Math.round(to*e);if(k<1)requestAnimationFrame(step);}
+      setTimeout(function(){requestAnimationFrame(step);},300);});
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});
+      document.querySelectorAll('.sheet,.card,.skill-card,.about-panel').forEach(function(el){var r=el.getBoundingClientRect();if(r.top>innerHeight){el.classList.add('rv');io.observe(el);}});
+    }
+  }
+  var links=[].slice.call(document.querySelectorAll('nav.top ul a'));
+  if('IntersectionObserver' in window){
+    var spy=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id);});}});},{rootMargin:'-45% 0px -50% 0px'});
+    ['about','projects','leadership','skills'].forEach(function(id){var el=document.getElementById(id);el&&spy.observe(el);});
+  }
 })();
 </script>
 </body>
