@@ -21,12 +21,16 @@
   --t-mega:clamp(3.2rem,10vw,11rem);
   --t-xl:clamp(2.2rem,4.6vw,5.4rem);
   --t-l:clamp(1.3rem,1.9vw,2.05rem);
-  --t-m:clamp(.95rem,1.02vw,1.1rem);
-  --t-s:.72rem;
+  --t-m:clamp(.95rem,.7rem + .32vw,1.2rem);
+  --t-xs:clamp(.8rem,.6rem + .26vw,1rem);
+  --t-sm:clamp(.84rem,.62rem + .3vw,1.06rem);
+  --t-sm2:clamp(.92rem,.66rem + .34vw,1.14rem);
+  --t-s:clamp(.68rem,.56rem + .16vw,.82rem);
   --ease:cubic-bezier(.16,.84,.24,1);
 }
 *{box-sizing:border-box}
-html{background:var(--bg);scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{background:var(--bg);-webkit-text-size-adjust:100%;scrollbar-width:none}
+html::-webkit-scrollbar{display:none;width:0;height:0}
 body{margin:0;color:var(--ink);font-family:var(--f);font-size:var(--t-m);line-height:1.55;font-stretch:100%;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
 ::selection{background:var(--red);color:#fff}
@@ -89,8 +93,6 @@ h3.disp{font-size:var(--t-xl)}
 .next:hover .arr{transform:translateX(6px)}
 
 @media (min-width:900px) and (min-height:600px){
-  html{scroll-snap-type:y mandatory}
-  .view{scroll-snap-align:start}
   .view.fit{height:100vh;height:100svh}
 }
 
@@ -115,10 +117,11 @@ figure.svgfig{cursor:default}
 .board{position:relative;z-index:1;flex:1;min-height:0;margin-top:clamp(10px,1.8vh,22px);display:grid;
   grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:repeat(8,minmax(0,1fr));gap:clamp(8px,1vw,18px)}
 .board>figure{min-width:0;min-height:0;display:flex;flex-direction:column;justify-content:var(--ay,end);align-items:var(--jx,start)}
-.board>figure>.fr{max-width:100%;max-height:calc(100% - 30px);width:auto;height:auto;min-height:0;flex:0 0 auto}
+.board>figure{container-type:size}
+.board>figure>.fr{width:min(100cqw,calc((100cqh - 30px) * var(--r,1.5)));height:auto;max-width:none;max-height:none;flex:0 0 auto}
 .note{position:relative;z-index:1;align-self:var(--ay,center);justify-self:var(--jx,start);max-width:34ch}
 .note .disp{font-size:clamp(1.6rem,2.6vw,2.8rem);margin-bottom:.35em}
-.note p{color:var(--ink2);font-size:.95rem}
+.note p{color:var(--ink2);font-size:var(--t-sm2)}
 .btitle{font-size:clamp(2rem,4.2vw,4.6rem);margin-top:.15em}
 
 /* ---------- landing ---------- */
@@ -169,7 +172,7 @@ figure.svgfig{cursor:default}
 .stats{grid-column:1/-1;grid-row:3;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap);border-top:1px solid var(--line);padding-top:clamp(14px,2.4vh,26px)}
 .stat{display:block}
 .stat b{display:block;font-stretch:62%;font-weight:700;font-size:var(--t-xl);line-height:.9;transition:color .3s}
-.stat p{margin-top:8px;font-size:.88rem;color:var(--ink2);max-width:30ch}
+.stat p{margin-top:8px;font-size:var(--t-sm);color:var(--ink2);max-width:30ch}
 .stat .lbl{display:block;margin-top:10px;color:var(--ink3);transition:color .3s}
 .stat:hover b{color:#fff}.stat:hover .lbl{color:var(--red)}
 
@@ -178,7 +181,7 @@ figure.svgfig{cursor:default}
 .about .kick{grid-column:1/-1}
 .about h2{grid-column:1/5;font-size:var(--t-mega);align-self:start}
 .about .lead{grid-column:5/13;font-size:clamp(1.35rem,2.25vw,2.45rem)}
-.about .cols{grid-column:5/13;columns:3 15em;column-gap:var(--gap);color:var(--ink2);font-size:.96rem}
+.about .cols{grid-column:5/13;columns:3 15em;column-gap:var(--gap);color:var(--ink2);font-size:var(--t-sm2)}
 .about .cols p{break-inside:avoid;margin-bottom:1em}
 
 /* ---------- project index ---------- */
@@ -187,7 +190,7 @@ figure.svgfig{cursor:default}
 .plist a{display:grid;grid-template-columns:minmax(44px,6%) auto 1fr auto;align-items:baseline;column-gap:var(--gap);padding:clamp(4px,.9vh,10px) 0;border-bottom:1px solid var(--line);transition:opacity .4s}
 .plist .n{font-size:var(--t-s);letter-spacing:.17em;font-stretch:118%;color:var(--red)}
 .plist .nm{font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:clamp(2.4rem,7.2vw,7.8rem);line-height:.92;transition:transform .6s var(--ease),color .3s}
-.plist .ds{color:var(--ink2);font-size:.95rem;justify-self:start;max-width:28ch;line-height:1.35}
+.plist .ds{color:var(--ink2);font-size:var(--t-sm2);justify-self:start;max-width:40ch;line-height:1.35}
 .plist .yr{color:var(--ink3)}
 .plist:hover a{opacity:.32}
 .plist a:hover{opacity:1}
@@ -200,8 +203,9 @@ figure.svgfig{cursor:default}
 .pa{flex:1;min-height:0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto minmax(0,1fr) auto auto;column-gap:var(--gap);row-gap:clamp(12px,2.4vh,28px);position:relative}
 .pa .kick{grid-column:1/-1;grid-row:1}
 .pa .media{grid-column:8/13;grid-row:1/4;min-height:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;z-index:0;padding-top:clamp(20px,4vh,44px)}
-.pa .media>.fr{max-width:100%;max-height:calc(100% - 30px);min-height:0;width:auto;height:auto;flex:0 0 auto}
-.pa .media.svgfig>.fr{width:100%}
+.pa .media:not(.svgfig){container-type:size}
+.pa .media>.fr{width:min(100cqw,calc((100cqh - 30px) * var(--r,1.5)));height:auto;flex:0 0 auto}
+.pa .media.svgfig>.fr{width:100%;max-height:100%}
 .pa .ttl{grid-column:1/8;grid-row:2;align-self:end;z-index:2;pointer-events:none}
 .pa .ttl .disp{font-size:var(--t-mega)}
 .pa .ttl .sub{display:block;margin-top:.5em;font-size:var(--t-l);font-weight:300;font-stretch:100%;text-transform:none;letter-spacing:0;line-height:1.2}
@@ -209,7 +213,7 @@ figure.svgfig{cursor:default}
 .facts{grid-column:1/-1;grid-row:4;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:var(--gap);border-top:1px solid var(--line);padding-top:clamp(12px,2.2vh,24px);z-index:2}
 .fact b{display:block;font-stretch:62%;font-weight:700;font-size:clamp(1.9rem,3.5vw,4rem);line-height:.92;letter-spacing:-.005em}
 .fact b small{font-size:.5em;font-weight:500;color:var(--ink2);letter-spacing:.02em}
-.fact p{margin-top:8px;font-size:.88rem;color:var(--ink2);line-height:1.45;max-width:36ch}
+.fact p{margin-top:8px;font-size:var(--t-sm);color:var(--ink2);line-height:1.45;max-width:36ch}
 .constel{position:absolute;z-index:1;pointer-events:none;opacity:.85;left:32%;top:clamp(26px,5vh,50px);width:min(25vw,calc(42vh - 120px));aspect-ratio:1}
 .constel svg{width:100%;height:100%;overflow:visible}
 .constel line,.constel path,.constel polyline{stroke:rgba(255,255,255,.26);stroke-width:.32;fill:none}
@@ -232,18 +236,18 @@ figure.svgfig{cursor:default}
 .spread .h{grid-column:1/6}
 .spread .h .disp{font-size:clamp(2.4rem,5.4vw,6.2rem)}
 .spread .h .lead{margin-top:clamp(12px,2vh,22px);font-size:clamp(1.1rem,1.5vw,1.6rem)}
-.problem{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:baseline;margin-top:clamp(12px,2.2vh,24px);color:var(--ink2);font-size:.95rem;max-width:62ch}
+.problem{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:baseline;margin-top:clamp(12px,2.2vh,24px);color:var(--ink2);font-size:var(--t-sm2);max-width:62ch}
 .problem .lbl{color:var(--red)}
-.prose{color:var(--ink2);font-size:.96rem;display:flex;flex-direction:column;gap:.9em;max-width:62ch}
+.prose{color:var(--ink2);font-size:var(--t-sm2);display:flex;flex-direction:column;gap:.9em;max-width:62ch}
 .prose b{color:var(--ink);font-weight:600}
 .seq{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:var(--gap)}
 .seq>div{padding-top:12px;border-top:1px solid var(--line)}
 .seq .k{font-stretch:62%;font-weight:700;font-size:clamp(1.5rem,2.2vw,2.3rem);text-transform:uppercase;line-height:1}
 .seq .k i{font-style:normal;color:var(--red)}
-.seq .t{display:block;margin:6px 0 4px;color:var(--ink);font-weight:500;font-size:.95rem}
-.seq p{color:var(--ink2);font-size:.88rem;line-height:1.45}
+.seq .t{display:block;margin:6px 0 4px;color:var(--ink);font-weight:500;font-size:var(--t-sm2)}
+.seq p{color:var(--ink2);font-size:var(--t-sm);line-height:1.45}
 .seq .x .k{color:var(--ink2)}
-.math{font-stretch:100%;font-variant-numeric:tabular-nums;color:var(--ink);font-size:.95rem;line-height:1.7;border-left:1px solid var(--red);padding-left:14px;margin:.2em 0}
+.math{font-stretch:100%;font-variant-numeric:tabular-nums;color:var(--ink);font-size:var(--t-sm2);line-height:1.7;border-left:1px solid var(--red);padding-left:14px;margin:.2em 0}
 .sub-board{display:grid;gap:var(--gap);min-height:0}
 .sub-board figure{display:flex;flex-direction:column;align-items:flex-start}
 .sub-board figure .fr{max-width:100%;width:auto;height:auto;max-height:var(--cap,38vh)}
@@ -261,7 +265,7 @@ canvas.m3d.drag{cursor:grabbing}
 .stick .kick{pointer-events:auto}
 .m3d-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--gap);flex-wrap:wrap}
 .m3d-copy .disp{font-size:clamp(2.4rem,6vw,6.6rem)}
-.m3d-copy p{margin-top:12px;color:var(--ink2);max-width:40ch;font-size:.95rem}
+.m3d-copy p{margin-top:12px;color:var(--ink2);max-width:40ch;font-size:var(--t-sm2)}
 .meter{display:flex;flex-direction:column;align-items:flex-end;gap:10px;min-width:180px}
 .meter i{display:block;width:clamp(140px,16vw,240px);height:1px;background:var(--ink4);position:relative}
 .meter i b{position:absolute;left:0;top:-1px;height:3px;width:0;background:var(--red)}
@@ -298,7 +302,7 @@ canvas.m3d.drag{cursor:grabbing}
 .env{border-top:1px solid var(--line);padding-top:12px;display:grid;grid-template-columns:auto 1fr;column-gap:16px;align-items:start}
 .env .lv{grid-column:1/-1;display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px}
 .env .lv b{font-stretch:62%;font-weight:700;font-size:clamp(1.9rem,3.2vw,3.6rem);line-height:.9}
-.env dl{grid-column:1/-1;margin:0;display:grid;grid-template-columns:5.6em 1fr;gap:3px 12px;font-size:.84rem;line-height:1.4}
+.env dl{grid-column:1/-1;margin:0;display:grid;grid-template-columns:5.6em 1fr;gap:3px 12px;font-size:var(--t-xs);line-height:1.4}
 .env dt{color:var(--ink3);font-size:var(--t-s);letter-spacing:.12em;text-transform:uppercase;font-stretch:118%;padding-top:2px}
 .env dd{margin:0;color:var(--ink2)}
 
@@ -308,14 +312,14 @@ canvas.m3d.drag{cursor:grabbing}
 .num b{display:block;font-stretch:62%;font-weight:700;font-size:clamp(2rem,3.8vw,4.4rem);line-height:.9}
 .num b small{font-size:.42em;font-weight:500;color:var(--ink2);letter-spacing:.02em}
 .num .lbl{display:block;margin:8px 0 4px;color:var(--ink)}
-.num p{color:var(--ink2);font-size:.84rem;line-height:1.45}
+.num p{color:var(--ink2);font-size:var(--t-xs);line-height:1.45}
 
 /* leadership */
 .lead3{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap)}
 .role{border-top:1px solid var(--line);padding-top:clamp(14px,2.4vh,26px)}
 .role .disp{font-size:clamp(1.8rem,3vw,3.3rem);line-height:.92}
 .role .lbl{display:block;margin:12px 0 14px}
-.role p{color:var(--ink2);font-size:.95rem;max-width:44ch}
+.role p{color:var(--ink2);font-size:var(--t-sm2);max-width:44ch}
 
 /* skills */
 .legend{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px clamp(14px,2vw,32px)}
@@ -325,7 +329,7 @@ canvas.m3d.drag{cursor:grabbing}
 .skills{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3.4vh,40px) var(--gap)}
 .cat{border-top:1px solid var(--line);padding-top:12px}
 .cat .lbl{display:block;margin-bottom:10px;color:var(--ink)}
-.cat .ws{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:.95rem}
+.cat .ws{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:var(--t-sm2)}
 .cat .ws>*{color:var(--ink2);transition:color .25s}
 .cat .ws a{border-bottom:1px solid transparent}
 .cat .ws a:hover{color:var(--ink);border-color:var(--red)}
@@ -359,7 +363,8 @@ canvas.m3d.drag{cursor:grabbing}
   .top{background:rgba(5,5,5,.8)}
   .board,.hello,.about,.pa,.spread{display:flex;flex-direction:column;gap:22px}
   .board{margin-top:22px}
-  .board>figure{display:block;max-width:100%}
+  .board>figure,.pa .media{display:block;max-width:100%;container-type:normal!important}
+  .pa .media>.fr{width:auto!important;max-width:100%!important;max-height:62svh!important}
   .board>figure:nth-of-type(odd){align-self:flex-start;width:88%}
   .board>figure:nth-of-type(even){align-self:flex-end;width:80%}
   .board>figure>.fr,.pa .media>.fr,.hello .portrait .fr{width:100%;height:auto;max-height:none}
@@ -384,7 +389,6 @@ canvas.m3d.drag{cursor:grabbing}
   .node.child .nm{white-space:nowrap}
 }
 @media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
   .js .rv{opacity:1;transform:none}
   .scrollcue i,.constel .dust{animation:none}
   .links-svg line{transition:none}
@@ -463,14 +467,15 @@ canvas.m3d.drag{cursor:grabbing}
 <!-- 02 · ABOUT -->
 <section class="view" id="about" data-label="About" data-sec="about">
   <div class="about">
-    <div class="kick rv"><span class="lbl"><span class="r">02</span> &nbsp;About</span><span class="lbl">From my LinkedIn</span></div>
+    <div class="kick rv"><span class="lbl"><span class="r">02</span> &nbsp;About</span></div>
     <h2 class="disp rv">About</h2>
-    <p class="lead rv">I'm a Mechanical Engineering student at UCF, minoring in Intelligent Robotic Systems, and I like building things that move on their own and survive harsh environments.</p>
+    <p class="lead rv">I'm a Mechanical Engineering student at UCF, minoring in Intelligent Robotic Systems.</p>
     <div class="cols rv">
       <p>Right now I'm an Autonomous Driving Research Assistant at the CAVREL Lab, developing and testing ROS 2 autonomy software on 1/10-scale F1TENTH race vehicles. I've built and serviced five of them, and tuning their suspension cut our average collision rate by 23%.</p>
       <p>I'm also the Mechanical Workshop Lead for AI Racer, UCF's autonomous racing initiative, where I'm building a mechanical curriculum to help students go from a bare chassis to a race-ready autonomous car. I competed in our AI Racer Grand Prix in 2026, and my team took 1st place.</p>
       <p>On the space side, I'm the Lead Test Engineer for an IREC 2027 rocket payload. I set the flight-derived test levels and pass/fail criteria, design low-cost test rigs like a centrifuge and a guided drop rig, and back each test procedure with hand calculations.</p>
       <p>I'm CSWA, CSWP, and CSWP-DT certified in SolidWorks, and I'm comfortable taking a part from CAD to a 3D print to a working system on the bench. I speak English, Portuguese, and some Spanish.</p>
+      <p>Outside of engineering, I love going out hiking, playing soccer and training combat sports like wrestling, kickboxing and BJJ. I also like to play video games, and I love talking with and meeting new people.</p>
       <p>I'm looking for internships in robotics and space systems. If you're working on autonomy, aerospace hardware, or test engineering, I'd love to connect.</p>
     </div>
   </div>
@@ -496,7 +501,7 @@ canvas.m3d.drag{cursor:grabbing}
   <div class="pa">
     <div class="kick rv"><span class="lbl"><span class="r">01</span> &nbsp;Mechanical / Electrical Engineer · Team SHPE UCF</span><span class="lbl">Jan – May 2026</span></div>
     <div class="constel rv"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The Racer constellation"><circle class="dust" cx="45.4" cy="55.7" r="0.53"/><circle class="dust" cx="50.8" cy="58.4" r="0.31"/><circle class="dust" cx="62.5" cy="78.1" r="0.28"/><circle class="dust" cx="10.7" cy="79.7" r="0.46"/><circle class="dust" cx="96.3" cy="94.6" r="0.45"/><circle class="dust" cx="17.1" cy="3.4" r="0.41"/><circle class="dust" cx="20.3" cy="25.2" r="0.26"/><circle class="dust" cx="44.3" cy="82.9" r="0.41"/><circle class="dust" cx="50.0" cy="65.6" r="0.39"/><circle class="dust" cx="97.8" cy="97.6" r="0.50"/><circle class="dust" cx="32.3" cy="24.0" r="0.34"/><circle class="dust" cx="75.6" cy="40.4" r="0.50"/><circle class="dust" cx="94.0" cy="83.3" r="0.25"/><circle class="dust" cx="89.4" cy="47.1" r="0.54"/><circle class="dust" cx="9.0" cy="62.4" r="0.48"/><circle class="dust" cx="10.4" cy="33.9" r="0.54"/><circle class="dust" cx="13.3" cy="25.7" r="0.28"/><circle class="dust" cx="78.5" cy="19.1" r="0.42"/><circle class="dust" cx="20.3" cy="72.3" r="0.29"/><circle class="dust" cx="13.2" cy="42.4" r="0.31"/><circle class="dust" cx="95.2" cy="79.1" r="0.34"/><circle class="dust" cx="22.2" cy="39.9" r="0.51"/><circle class="dust" cx="11.6" cy="97.0" r="0.31"/><circle class="dust" cx="76.2" cy="33.6" r="0.34"/><line x1="5" y1="64" x2="18" y2="59"/><line x1="18" y1="59" x2="36" y2="55"/><line x1="36" y1="55" x2="46" y2="46"/><line x1="46" y1="46" x2="56" y2="52"/><line x1="56" y1="52" x2="66" y2="44"/><line x1="66" y1="44" x2="82" y2="51"/><line x1="82" y1="51" x2="86" y2="35"/><line x1="86" y1="35" x2="95" y2="35"/><line x1="82" y1="51" x2="91" y2="61"/><line x1="5" y1="64" x2="11" y2="67"/><line x1="33" y1="68" x2="64" y2="68"/><line x1="30.5" y1="72.8" x2="24.0" y2="76.5"/><line x1="24.0" y1="76.5" x2="17.5" y2="72.8"/><line x1="17.5" y1="72.8" x2="17.5" y2="65.2"/><line x1="17.5" y1="65.2" x2="24.0" y2="61.5"/><line x1="24.0" y1="61.5" x2="30.5" y2="65.2"/><line x1="30.5" y1="65.2" x2="30.5" y2="72.8"/><line x1="11" y1="67" x2="17.5" y2="72.8"/><line x1="30.5" y1="72.8" x2="33" y2="68"/><line x1="83.9" y1="73.0" x2="77.0" y2="77.0"/><line x1="77.0" y1="77.0" x2="70.1" y2="73.0"/><line x1="70.1" y1="73.0" x2="70.1" y2="65.0"/><line x1="70.1" y1="65.0" x2="77.0" y2="61.0"/><line x1="77.0" y1="61.0" x2="83.9" y2="65.0"/><line x1="83.9" y1="65.0" x2="83.9" y2="73.0"/><line x1="64" y1="68" x2="70.1" y2="73.0"/><line x1="83.9" y1="73.0" x2="91" y2="61"/><circle class="st" cx="5" cy="64" r="1.7"/><circle class="st" cx="18" cy="59" r="1.15"/><circle class="st" cx="36" cy="55" r="1.15"/><circle class="st" cx="56" cy="52" r="1.7"/><circle class="st" cx="66" cy="44" r="1.15"/><circle class="st" cx="82" cy="51" r="1.15"/><circle class="st" cx="86" cy="35" r="1.15"/><circle class="st" cx="95" cy="35" r="1.7"/><circle class="st" cx="91" cy="61" r="1.15"/><circle class="st" cx="11" cy="67" r="1.15"/><circle class="st" cx="33" cy="68" r="1.15"/><circle class="st" cx="64" cy="68" r="1.7"/><circle class="st" cx="30.5" cy="72.8" r="1.15"/><circle class="st" cx="24.0" cy="76.5" r="1.15"/><circle class="st" cx="17.5" cy="72.8" r="1.15"/><circle class="st" cx="17.5" cy="65.2" r="1.7"/><circle class="st" cx="24.0" cy="61.5" r="1.15"/><circle class="st" cx="30.5" cy="65.2" r="1.15"/><circle class="st" cx="83.9" cy="73.0" r="1.15"/><circle class="st" cx="77.0" cy="77.0" r="1.7"/><circle class="st" cx="70.1" cy="73.0" r="1.15"/><circle class="st" cx="70.1" cy="65.0" r="1.15"/><circle class="st" cx="77.0" cy="61.0" r="1.15"/><circle class="st" cx="83.9" cy="65.0" r="1.7"/><a href="#" class="main-star" role="button" aria-label="Open the star map (the cockpit)"><title>Back to the star map</title><circle class="halo" cx="46" cy="46" r="6"/><circle class="core" cx="46" cy="46" r="2.8"/></a></svg></div>
-    <figure class="rv media"><img class="fr ph" src="racer-team.webp" alt="Team SHPE UCF, Grand Prix winners" width="1239" height="826" loading="lazy" decoding="async"><figcaption>Team SHPE UCF, Grand Prix winners</figcaption></figure>
+    <figure class="rv media"><img class="fr ph" style="--r:1.5000" src="racer-team.webp" alt="Team SHPE UCF, Grand Prix winners" width="1239" height="826" loading="lazy" decoding="async"><figcaption>Team SHPE UCF, Grand Prix winners</figcaption></figure>
     <h2 class="ttl rv"><span class="disp">AI Racer</span><span class="sub">Grand Prix · 1st place</span></h2>
     <p class="sum rv">A small-scale autonomous F1-style car running a Linux, ROS 2 driving stack. Our team worked across mechanical, electrical and software groups and won UCF's AI Racer Grand Prix with a record top speed.</p>
     <div class="facts">
@@ -509,10 +514,10 @@ canvas.m3d.drag{cursor:grabbing}
 <section class="view fit" id="ai-racer-gallery" data-label="AI Racer · Build" data-sec="projects">
   <div class="kick rv"><span class="lbl"><span class="r">01</span> &nbsp;AI Racer</span><span class="lbl">Shop, CAD &amp; track</span></div>
   <div class="board">
-    <figure class="rv" style="grid-area:1/1/6/7;--jx:start;--ay:start"><img class="fr ph" src="racer-track.webp" alt="On track" width="539" height="353" loading="lazy" decoding="async"><figcaption>On track</figcaption></figure>
-    <figure class="rv" style="grid-area:1/8/5/13;--jx:end;--ay:start"><img class="fr ph" src="racer-build.webp" alt="Build and wiring" width="864" height="648" loading="lazy" decoding="async"><figcaption>Build and wiring</figcaption></figure>
-    <figure class="rv" style="grid-area:6/1/9/4;--jx:start;--ay:end"><img class="fr ph" src="racer-rearwing.webp" alt="Rear wing · CAD" width="332" height="235" loading="lazy" decoding="async"><figcaption>Rear wing · CAD</figcaption></figure>
-    <figure class="rv" style="grid-area:6/4/9/7;--jx:center;--ay:end"><img class="fr ph" src="racer-frontwing.webp" alt="Front wing · CAD" width="300" height="186" loading="lazy" decoding="async"><figcaption>Front wing · CAD</figcaption></figure>
+    <figure class="rv" style="grid-area:1/1/6/7;--jx:start;--ay:start"><img class="fr ph" style="--r:1.5269" src="racer-track.webp" alt="On track" width="539" height="353" loading="lazy" decoding="async"><figcaption>On track</figcaption></figure>
+    <figure class="rv" style="grid-area:1/8/5/13;--jx:end;--ay:start"><img class="fr ph" style="--r:1.3333" src="racer-build.webp" alt="Build and wiring" width="864" height="648" loading="lazy" decoding="async"><figcaption>Build and wiring</figcaption></figure>
+    <figure class="rv" style="grid-area:6/1/9/4;--jx:start;--ay:end"><img class="fr ph" style="--r:1.4128" src="racer-rearwing.webp" alt="Rear wing · CAD" width="332" height="235" loading="lazy" decoding="async"><figcaption>Rear wing · CAD</figcaption></figure>
+    <figure class="rv" style="grid-area:6/4/9/8;--jx:center;--ay:end"><img class="fr ph" style="--r:1.6129" src="racer-frontwing.webp" alt="Front wing · CAD" width="300" height="186" loading="lazy" decoding="async"><figcaption>Front wing · CAD</figcaption></figure>
     <div class="note rv" style="grid-area:5/8/9/13;--ay:end;--jx:end"><p class="disp">Less wing, more speed</p><p>The rear wing came off the final car. Lighter, less battery strain, and 2 m/s faster on the straights.</p></div>
   </div>
   <a class="next lbl" href="#cavrel" data-go="cavrel">Next <b>02 CAVREL Lab <span class="arr">→</span></b></a>
@@ -523,7 +528,7 @@ canvas.m3d.drag{cursor:grabbing}
   <div class="pa">
     <div class="kick rv"><span class="lbl"><span class="r">02</span> &nbsp;Research Assistant · CAVREL Lab, UCF</span><span class="lbl">Oct 2026 – Now</span></div>
     <div class="constel rv"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The Track constellation: a closed course with a tight C-curve on the left, an S-curve on the right, and its inner edge"><circle class="dust" cx="61.8" cy="73.2" r="0.49"/><circle class="dust" cx="73.0" cy="90.5" r="0.26"/><circle class="dust" cx="92.6" cy="64.3" r="0.52"/><circle class="dust" cx="47.0" cy="25.7" r="0.41"/><circle class="dust" cx="3.3" cy="22.8" r="0.33"/><circle class="dust" cx="75.5" cy="17.3" r="0.49"/><circle class="dust" cx="61.3" cy="14.2" r="0.25"/><circle class="dust" cx="22.1" cy="22.7" r="0.54"/><circle class="dust" cx="29.8" cy="94.3" r="0.41"/><circle class="dust" cx="21.7" cy="92.3" r="0.46"/><circle class="dust" cx="87.8" cy="30.7" r="0.36"/><circle class="dust" cx="16.0" cy="8.3" r="0.34"/><circle class="dust" cx="2.3" cy="67.1" r="0.35"/><circle class="dust" cx="80.6" cy="48.2" r="0.34"/><circle class="dust" cx="69.6" cy="7.5" r="0.54"/><circle class="dust" cx="74.0" cy="83.1" r="0.26"/><circle class="dust" cx="37.2" cy="57.5" r="0.25"/><circle class="dust" cx="19.4" cy="93.7" r="0.31"/><circle class="dust" cx="91.2" cy="92.4" r="0.35"/><circle class="dust" cx="52.4" cy="76.5" r="0.28"/><line x1="36" y1="18" x2="53" y2="18"/><line x1="53" y1="18" x2="70" y2="18"/><line x1="70" y1="18" x2="82" y2="22"/><line x1="82" y1="22" x2="88" y2="32"/><line x1="88" y1="32" x2="82" y2="42"/><line x1="82" y1="42" x2="70" y2="49"/><line x1="70" y1="49" x2="64" y2="57"/><line x1="64" y1="57" x2="68" y2="66"/><line x1="68" y1="66" x2="80" y2="72"/><line x1="80" y1="72" x2="86" y2="80"/><line x1="86" y1="80" x2="78" y2="86"/><line x1="78" y1="86" x2="64" y2="86"/><line x1="64" y1="86" x2="50" y2="86"/><line x1="50" y1="86" x2="38" y2="86"/><line x1="38" y1="86" x2="31" y2="76"/><line x1="31" y1="76" x2="26.0" y2="67.0"/><line x1="26.0" y1="67.0" x2="18.5" y2="65.0"/><line x1="18.5" y1="65.0" x2="13.0" y2="59.5"/><line x1="13.0" y1="59.5" x2="11.0" y2="52.0"/><line x1="11.0" y1="52.0" x2="13.0" y2="44.5"/><line x1="13.0" y1="44.5" x2="18.5" y2="39.0"/><line x1="18.5" y1="39.0" x2="26.0" y2="37.0"/><line x1="26.0" y1="37.0" x2="31" y2="28"/><line x1="31" y1="28" x2="36" y2="18"/><path class="inner" d="M39.0,23.8 L39.4,23.8 L40.3,23.8 L41.7,23.8 L43.5,23.9 L45.7,24.1 L48.0,24.2 L50.4,24.4 L52.9,24.4 L55.2,24.4 L57.5,24.4 L59.8,24.3 L61.9,24.3 L63.9,24.2 L65.8,24.3 L67.5,24.3 L69.2,24.5 L70.7,24.7 L72.1,25.0 L73.4,25.3 L74.6,25.6 L75.7,26.0 L76.6,26.3 L77.3,26.8 L78.0,27.2 L78.7,27.8 L79.3,28.5 L80.0,29.2 L80.5,30.0 L81.0,30.8 L81.2,31.4 L81.4,31.7 L81.5,32.0 L81.4,32.2 L81.3,32.5 L81.0,33.0 L80.5,33.7 L79.9,34.6 L79.2,35.4 L78.5,36.3 L77.7,37.0 L76.8,37.7 L75.8,38.4 L74.5,39.1 L73.0,39.8 L71.4,40.7 L69.6,41.6 L67.8,42.7 L66.2,43.9 L64.7,45.1 L63.4,46.3 L62.2,47.5 L61.0,48.9 L59.9,50.5 L59.0,52.2 L58.3,54.1 L57.8,56.2 L57.7,58.3 L57.9,60.4 L58.4,62.4 L59.1,64.2 L60.0,66.0 L61.1,67.6 L62.4,69.3 L63.9,70.8 L65.7,72.1 L67.6,73.3 L69.5,74.2 L71.3,75.0 L72.9,75.7 L74.3,76.3 L75.3,76.8 L76.2,77.4 L77.0,78.0 L77.8,78.7 L78.5,79.4 L79.1,80.0 L79.4,80.4 L79.6,80.4 L79.6,79.9 L79.7,79.2 L79.8,78.5 L79.8,78.1 L79.7,78.0 L79.3,78.3 L78.7,78.7 L77.9,79.1 L77.1,79.4 L76.3,79.6 L75.5,79.8 L74.4,79.9 L73.1,79.9 L71.6,79.8 L69.8,79.8 L68.0,79.7 L66.1,79.6 L64.1,79.5 L62.3,79.5 L60.5,79.5 L58.7,79.5 L56.9,79.5 L55.1,79.5 L53.4,79.5 L51.6,79.5 L49.8,79.6 L47.9,79.6 L46.2,79.8 L44.5,80.0 L43.2,80.1 L42.2,80.2 L41.5,80.2 L41.2,80.2 L41.0,80.2 L40.9,80.1 L40.6,79.7 L40.2,79.0 L39.6,78.1 L38.9,76.9 L38.2,75.6 L37.4,74.2 L36.7,72.9 L36.1,71.7 L35.5,70.6 L35.0,69.5 L34.4,68.2 L33.6,66.8 L32.7,65.3 L31.5,63.7 L29.9,62.3 L28.1,61.0 L26.3,60.2 L24.6,59.6 L23.2,59.4 L22.3,59.3 L21.7,59.2 L21.5,59.2 L21.4,59.1 L21.2,59.0 L20.9,58.7 L20.4,58.4 L20.0,58.0 L19.6,57.5 L19.2,57.1 L18.9,56.7 L18.7,56.2 L18.4,55.8 L18.2,55.3 L18.0,54.8 L17.8,54.2 L17.7,53.6 L17.6,53.1 L17.5,52.5 L17.5,52.0 L17.5,51.5 L17.6,50.9 L17.7,50.4 L17.8,49.8 L18.0,49.2 L18.2,48.7 L18.4,48.2 L18.7,47.8 L18.9,47.3 L19.2,46.9 L19.6,46.5 L20.0,46.0 L20.4,45.6 L20.9,45.3 L21.2,45.0 L21.4,44.9 L21.5,44.8 L21.7,44.8 L22.3,44.7 L23.2,44.6 L24.6,44.4 L26.3,43.8 L28.1,43.0 L29.9,41.8 L31.5,40.3 L32.7,38.8 L33.7,37.3 L34.4,35.9 L35.1,34.5 L35.7,33.2 L36.3,31.9 L36.9,30.5 L37.6,28.9 L38.1,27.3 L38.6,25.8 L38.9,24.7 L39.1,24.0 L39.1,23.7 L39.0,23.7 Z"/><line x1="50" y1="80" x2="50" y2="90" class="acc-line"/><circle class="st" cx="36" cy="18" r="1.6"/><circle class="st" cx="53" cy="18" r="1.1"/><circle class="st" cx="70" cy="18" r="1.1"/><circle class="st" cx="82" cy="22" r="1.1"/><circle class="st" cx="88" cy="32" r="1.6"/><circle class="st" cx="82" cy="42" r="1.1"/><circle class="st" cx="70" cy="49" r="1.1"/><circle class="st" cx="64" cy="57" r="1.1"/><circle class="st" cx="68" cy="66" r="1.6"/><circle class="st" cx="80" cy="72" r="1.1"/><circle class="st" cx="86" cy="80" r="1.1"/><circle class="st" cx="78" cy="86" r="1.1"/><circle class="st" cx="64" cy="86" r="1.6"/><circle class="st" cx="38" cy="86" r="1.1"/><circle class="st" cx="31" cy="76" r="1.1"/><circle class="st" cx="26.0" cy="67.0" r="1.6"/><circle class="st" cx="18.5" cy="65.0" r="1.1"/><circle class="st" cx="13.0" cy="59.5" r="1.1"/><circle class="st" cx="11.0" cy="52.0" r="1.1"/><circle class="st" cx="13.0" cy="44.5" r="1.6"/><circle class="st" cx="18.5" cy="39.0" r="1.1"/><circle class="st" cx="26.0" cy="37.0" r="1.1"/><circle class="st" cx="31" cy="28" r="1.1"/><circle class="st inner-st" cx="39.0" cy="23.8" r=".75"/><circle class="st inner-st" cx="52.9" cy="24.4" r=".75"/><circle class="st inner-st" cx="69.2" cy="24.5" r=".75"/><circle class="st inner-st" cx="78.0" cy="27.2" r=".75"/><circle class="st inner-st" cx="81.5" cy="32.0" r=".75"/><circle class="st inner-st" cx="77.7" cy="37.0" r=".75"/><circle class="st inner-st" cx="66.2" cy="43.9" r=".75"/><circle class="st inner-st" cx="57.8" cy="56.2" r=".75"/><circle class="st inner-st" cx="63.9" cy="70.8" r=".75"/><circle class="st inner-st" cx="76.2" cy="77.4" r=".75"/><circle class="st inner-st" cx="79.7" cy="79.2" r=".75"/><circle class="st inner-st" cx="76.3" cy="79.6" r=".75"/><circle class="st inner-st" cx="64.1" cy="79.5" r=".75"/><circle class="st inner-st" cx="49.8" cy="79.6" r=".75"/><circle class="st inner-st" cx="41.0" cy="80.2" r=".75"/><circle class="st inner-st" cx="36.7" cy="72.9" r=".75"/><circle class="st inner-st" cx="29.9" cy="62.3" r=".75"/><circle class="st inner-st" cx="21.4" cy="59.1" r=".75"/><circle class="st inner-st" cx="18.7" cy="56.2" r=".75"/><circle class="st inner-st" cx="17.5" cy="52.0" r=".75"/><circle class="st inner-st" cx="18.7" cy="47.8" r=".75"/><circle class="st inner-st" cx="21.4" cy="44.9" r=".75"/><circle class="st inner-st" cx="29.9" cy="41.8" r=".75"/><circle class="st inner-st" cx="36.9" cy="30.5" r=".75"/><a href="#" class="main-star" role="button" aria-label="Open the star map (the start line)"><title>Back to the star map</title><circle class="halo" cx="50" cy="86" r="6"/><circle class="core" cx="50" cy="86" r="2.8"/></a></svg></div>
-    <figure class="rv media"><video class="fr ph" src="cavrel-run.mp4" poster="cavrel-run-poster.webp" width="540" height="948" muted loop playsinline preload="none" aria-label="Autonomous lap on the lab&#x27;s duct-lined track"></video><figcaption>Autonomous lap on the lab's duct-lined track</figcaption></figure>
+    <figure class="rv media"><video class="fr ph" style="--r:0.5696" src="cavrel-run.mp4" poster="cavrel-run-poster.webp" width="540" height="948" muted loop playsinline preload="none" aria-label="Autonomous lap on the lab&#x27;s duct-lined track"></video><figcaption>Autonomous lap on the lab's duct-lined track</figcaption></figure>
     <h2 class="ttl rv"><span class="disp">Self-Driving</span><span class="sub">Autonomous driving research on F1TENTH cars</span></h2>
     <p class="sum rv">Developing and testing ROS 2 autonomy software on 1/10-scale F1TENTH race vehicles for local and international autonomous racing competitions.</p>
     <div class="facts">
@@ -536,10 +541,10 @@ canvas.m3d.drag{cursor:grabbing}
 <section class="view fit" id="cavrel-gallery" data-label="CAVREL · Hardware" data-sec="projects">
   <div class="kick rv"><span class="lbl"><span class="r">02</span> &nbsp;CAVREL Lab</span><span class="lbl">Hardware</span></div>
   <div class="board">
-    <figure class="rv" style="grid-area:1/1/5/6;--jx:start;--ay:start"><img class="fr ph" src="cavrel-track.webp" alt="Start line" width="1600" height="1067" loading="lazy" decoding="async"><figcaption>Start line</figcaption></figure>
-    <figure class="rv" style="grid-area:5/2/9/6;--jx:end;--ay:end"><img class="fr ph" src="cavrel-vesc.webp" alt="VESC setup" width="1600" height="1200" loading="lazy" decoding="async"><figcaption>VESC setup</figcaption></figure>
-    <figure class="rv" style="grid-area:1/6/7/9;--jx:center;--ay:center"><img class="fr ph" src="cavrel-jetson.webp" alt="Compute stack" width="1200" height="1600" loading="lazy" decoding="async"><figcaption>Compute stack</figcaption></figure>
-    <figure class="rv" style="grid-area:1/9/9/12;--jx:end;--ay:end"><img class="fr ph" src="cavrel-teardown.webp" alt="Electronics teardown" width="1200" height="1600" loading="lazy" decoding="async"><figcaption>Electronics teardown</figcaption></figure>
+    <figure class="rv" style="grid-area:1/1/5/6;--jx:start;--ay:start"><img class="fr ph" style="--r:1.4995" src="cavrel-track.webp" alt="Start line" width="1600" height="1067" loading="lazy" decoding="async"><figcaption>Start line</figcaption></figure>
+    <figure class="rv" style="grid-area:5/2/9/6;--jx:end;--ay:end"><img class="fr ph" style="--r:1.3333" src="cavrel-vesc.webp" alt="VESC setup" width="1600" height="1200" loading="lazy" decoding="async"><figcaption>VESC setup</figcaption></figure>
+    <figure class="rv" style="grid-area:1/6/7/9;--jx:center;--ay:center"><img class="fr ph" style="--r:0.7500" src="cavrel-jetson.webp" alt="Compute stack" width="1200" height="1600" loading="lazy" decoding="async"><figcaption>Compute stack</figcaption></figure>
+    <figure class="rv" style="grid-area:1/9/9/12;--jx:end;--ay:end"><img class="fr ph" style="--r:0.7500" src="cavrel-teardown.webp" alt="Electronics teardown" width="1200" height="1600" loading="lazy" decoding="async"><figcaption>Electronics teardown</figcaption></figure>
     <div class="note rv" style="grid-area:7/6/9/9;--ay:end;--jx:center"><p class="lbl" style="margin-bottom:10px">Stack</p><p>F1TENTH Powerboard · VESC · Hokuyo UST-10LX LiDAR · NVIDIA Jetson · 3S LiPo · ROS 2 · SLAM · Follow-the-Gap</p></div>
   </div>
   <a class="next lbl" href="#rocketshpe" data-go="rocketshpe">Next <b>03 IREC Payload <span class="arr">→</span></b></a>
@@ -550,7 +555,7 @@ canvas.m3d.drag{cursor:grabbing}
   <div class="pa">
     <div class="kick rv"><span class="lbl"><span class="r">03</span> &nbsp;Lead Test Engineer · RocketSHPE (SHPE UCF × Knights Experimental Rocketry)</span><span class="lbl">Sep 2026 – Now</span></div>
     <div class="constel rv"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The Rocket constellation"><circle class="dust" cx="28.6" cy="18.2" r="0.39"/><circle class="dust" cx="22.6" cy="41.7" r="0.44"/><circle class="dust" cx="32.3" cy="82.6" r="0.54"/><circle class="dust" cx="9.2" cy="5.0" r="0.51"/><circle class="dust" cx="70.0" cy="56.8" r="0.34"/><circle class="dust" cx="3.8" cy="15.0" r="0.39"/><circle class="dust" cx="81.6" cy="24.8" r="0.29"/><circle class="dust" cx="62.4" cy="44.9" r="0.44"/><circle class="dust" cx="79.5" cy="94.0" r="0.46"/><circle class="dust" cx="47.6" cy="19.2" r="0.25"/><circle class="dust" cx="70.6" cy="19.2" r="0.33"/><circle class="dust" cx="68.9" cy="52.0" r="0.43"/><circle class="dust" cx="39.8" cy="78.0" r="0.52"/><circle class="dust" cx="91.5" cy="71.3" r="0.29"/><circle class="dust" cx="62.1" cy="89.4" r="0.36"/><circle class="dust" cx="86.4" cy="78.5" r="0.53"/><circle class="dust" cx="64.5" cy="21.7" r="0.47"/><circle class="dust" cx="63.6" cy="70.9" r="0.31"/><circle class="dust" cx="96.1" cy="95.8" r="0.41"/><circle class="dust" cx="32.8" cy="89.4" r="0.51"/><circle class="dust" cx="9.9" cy="44.3" r="0.42"/><circle class="dust" cx="48.8" cy="4.7" r="0.49"/><circle class="dust" cx="78.8" cy="18.6" r="0.35"/><circle class="dust" cx="15.5" cy="16.3" r="0.40"/><line x1="50" y1="6" x2="42" y2="22"/><line x1="50" y1="6" x2="58" y2="22"/><line x1="42" y1="22" x2="42" y2="58"/><line x1="58" y1="22" x2="58" y2="58"/><line x1="42" y1="58" x2="32" y2="74"/><line x1="58" y1="58" x2="68" y2="74"/><line x1="32" y1="74" x2="50" y2="70"/><line x1="68" y1="74" x2="50" y2="70"/><line x1="42" y1="58" x2="58" y2="58"/><line x1="50" y1="70" x2="44" y2="84"/><line x1="50" y1="70" x2="56" y2="84"/><line x1="44" y1="84" x2="50" y2="92"/><line x1="56" y1="84" x2="50" y2="92"/><circle class="st" cx="42" cy="22" r="1.15"/><circle class="st" cx="58" cy="22" r="1.15"/><circle class="st" cx="42" cy="58" r="1.15"/><circle class="st" cx="58" cy="58" r="1.7"/><circle class="st" cx="32" cy="74" r="1.15"/><circle class="st" cx="68" cy="74" r="1.15"/><circle class="st" cx="50" cy="70" r="1.15"/><circle class="st" cx="50" cy="92" r="1.7"/><circle class="st" cx="44" cy="84" r="1.15"/><circle class="st" cx="56" cy="84" r="1.15"/><a href="#" class="main-star" role="button" aria-label="Open the star map (the nose cone)"><title>Back to the star map</title><circle class="halo" cx="50" cy="6" r="6"/><circle class="core" cx="50" cy="6" r="2.8"/></a></svg></div>
-    <figure class="rv media"><img class="fr neg" src="rs-payload.webp" alt="Payload assembly · CAD" width="339" height="566" loading="lazy" decoding="async"><figcaption>Payload assembly · CAD</figcaption></figure>
+    <figure class="rv media"><img class="fr neg" style="--r:0.5989" src="rs-payload.webp" alt="Payload assembly · CAD" width="339" height="566" loading="lazy" decoding="async"><figcaption>Payload assembly · CAD</figcaption></figure>
     <h2 class="ttl rv"><span class="disp">IREC Payload</span><span class="sub">2027 rocket payload test campaign</span></h2>
     <p class="sum rv">A multi-sensor payload that logs pressure, temperature and acceleration through flight and checks whether a student-designed vibration-isolation mount protects its data. I lead environmental testing: what the payload must survive, the procedures, and low-cost rigs to prove it, coordinating with the mechanical, electrical and software leads.</p>
     <div class="facts">
@@ -663,9 +668,9 @@ canvas.m3d.drag{cursor:grabbing}
 <section class="view fit" id="rs-flight" data-label="Payload · Flight" data-sec="projects">
   <div class="kick rv"><span class="lbl"><span class="r">03-D</span> &nbsp;IREC Payload</span><span class="lbl">Flight &amp; system</span></div>
   <div class="board">
-    <figure class="rv" style="grid-area:1/1/5/9;--jx:start;--ay:start"><img class="fr ph" src="rs-sim.webp" alt="Flight sim: altitude, Mach, g" width="647" height="296" loading="lazy" decoding="async"><figcaption>Flight sim: altitude, Mach, g</figcaption></figure>
-    <figure class="rv" style="grid-area:5/1/9/7;--jx:start;--ay:end"><img class="fr ph" src="rs-block.webp" alt="Prototype system block diagram" width="801" height="419" loading="lazy" decoding="async"><figcaption>Prototype system block diagram</figcaption></figure>
-    <figure class="rv" style="grid-area:5/7/9/13;--jx:end;--ay:end"><img class="fr ph" src="rs-openrocket.webp" alt="Flight profile" width="790" height="480" loading="lazy" decoding="async"><figcaption>Flight profile</figcaption></figure>
+    <figure class="rv" style="grid-area:1/1/5/9;--jx:start;--ay:start"><img class="fr ph" style="--r:2.1858" src="rs-sim.webp" alt="Flight sim: altitude, Mach, g" width="647" height="296" loading="lazy" decoding="async"><figcaption>Flight sim: altitude, Mach, g</figcaption></figure>
+    <figure class="rv" style="grid-area:5/1/9/7;--jx:start;--ay:end"><img class="fr ph" style="--r:1.9117" src="rs-block.webp" alt="Prototype system block diagram" width="801" height="419" loading="lazy" decoding="async"><figcaption>Prototype system block diagram</figcaption></figure>
+    <figure class="rv" style="grid-area:5/7/9/13;--jx:end;--ay:end"><img class="fr ph" style="--r:1.6458" src="rs-openrocket.webp" alt="Flight profile" width="790" height="480" loading="lazy" decoding="async"><figcaption>Flight profile</figcaption></figure>
     <div class="note rv" style="grid-area:1/9/5/13;--ay:start;--jx:end"><p class="disp">32,780 ft</p><p>Predicted apogee. Teensy 4.1, dual KX134 high-g accelerometers, dual MS5611 barometers and microSD logging all get tested against these flight numbers.</p></div>
   </div>
   <a class="next lbl" href="#scorpion" data-go="scorpion">Next <b>04 Scorpion <span class="arr">→</span></b></a>
@@ -676,7 +681,7 @@ canvas.m3d.drag{cursor:grabbing}
   <div class="pa">
     <div class="kick rv"><span class="lbl"><span class="r">04</span> &nbsp;Mechanical Engineer · Project STRIDE, UCF STEEL · Tail, claws &amp; chassis</span><span class="lbl">Sep 2026 – Now</span></div>
     <div class="constel rv"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Scorpius constellation"><circle class="dust" cx="5.7" cy="94.4" r="0.32"/><circle class="dust" cx="26.7" cy="81.1" r="0.43"/><circle class="dust" cx="18.8" cy="71.2" r="0.27"/><circle class="dust" cx="55.7" cy="83.8" r="0.43"/><circle class="dust" cx="90.1" cy="21.6" r="0.25"/><circle class="dust" cx="44.8" cy="7.8" r="0.30"/><circle class="dust" cx="56.9" cy="14.6" r="0.36"/><circle class="dust" cx="96.1" cy="65.1" r="0.46"/><circle class="dust" cx="15.5" cy="5.4" r="0.26"/><circle class="dust" cx="69.3" cy="94.4" r="0.26"/><circle class="dust" cx="48.3" cy="72.1" r="0.35"/><circle class="dust" cx="9.2" cy="54.4" r="0.47"/><circle class="dust" cx="72.8" cy="69.6" r="0.49"/><circle class="dust" cx="35.8" cy="67.8" r="0.52"/><circle class="dust" cx="42.0" cy="77.9" r="0.51"/><circle class="dust" cx="62.0" cy="38.7" r="0.42"/><circle class="dust" cx="9.7" cy="63.4" r="0.55"/><circle class="dust" cx="71.9" cy="39.3" r="0.47"/><circle class="dust" cx="44.3" cy="82.5" r="0.28"/><circle class="dust" cx="4.9" cy="59.7" r="0.39"/><circle class="dust" cx="69.0" cy="49.7" r="0.43"/><circle class="dust" cx="26.6" cy="3.1" r="0.34"/><circle class="dust" cx="21.4" cy="18.3" r="0.52"/><circle class="dust" cx="44.4" cy="87.6" r="0.35"/><line x1="43" y1="33" x2="57" y2="33"/><line x1="57" y1="33" x2="63" y2="45"/><line x1="63" y1="45" x2="60" y2="58"/><line x1="60" y1="58" x2="50" y2="66"/><line x1="50" y1="66" x2="40" y2="58"/><line x1="40" y1="58" x2="37" y2="45"/><line x1="37" y1="45" x2="43" y2="33"/><line x1="43" y1="33" x2="34" y2="26"/><line x1="34" y1="26" x2="26" y2="20"/><line x1="26" y1="20" x2="19" y2="8"/><line x1="26" y1="20" x2="12" y2="19"/><line x1="57" y1="33" x2="66" y2="26"/><line x1="66" y1="26" x2="74" y2="20"/><line x1="74" y1="20" x2="81" y2="8"/><line x1="74" y1="20" x2="88" y2="19"/><line x1="40" y1="39" x2="27" y2="35"/><line x1="60" y1="39" x2="73" y2="35"/><line x1="37.5" y1="46" x2="23" y2="47"/><line x1="62.5" y1="46" x2="77" y2="47"/><line x1="38.5" y1="53" x2="25" y2="59"/><line x1="61.5" y1="53" x2="75" y2="59"/><line x1="42" y1="59.5" x2="31" y2="70"/><line x1="58" y1="59.5" x2="69" y2="70"/><line x1="50" y1="66" x2="50" y2="74"/><line x1="50" y1="74" x2="54" y2="82"/><line x1="54" y1="82" x2="62" y2="88"/><line x1="62" y1="88" x2="72" y2="88"/><line x1="72" y1="88" x2="79" y2="82"/><line x1="79" y1="82" x2="76" y2="74"/><circle class="st" cx="43" cy="33" r="1.7"/><circle class="st" cx="57" cy="33" r="1.15"/><circle class="st" cx="63" cy="45" r="1.15"/><circle class="st" cx="60" cy="58" r="1.15"/><circle class="st" cx="50" cy="66" r="1.7"/><circle class="st" cx="40" cy="58" r="1.15"/><circle class="st" cx="37" cy="45" r="1.15"/><circle class="st" cx="34" cy="26" r="1.15"/><circle class="st" cx="26" cy="20" r="1.7"/><circle class="st" cx="19" cy="8" r="1.15"/><circle class="st" cx="12" cy="19" r="1.15"/><circle class="st" cx="66" cy="26" r="1.15"/><circle class="st" cx="74" cy="20" r="1.7"/><circle class="st" cx="81" cy="8" r="1.15"/><circle class="st" cx="88" cy="19" r="1.15"/><circle class="st" cx="27" cy="35" r="1.7"/><circle class="st" cx="73" cy="35" r="1.15"/><circle class="st" cx="23" cy="47" r="1.7"/><circle class="st" cx="77" cy="47" r="1.15"/><circle class="st" cx="25" cy="59" r="1.7"/><circle class="st" cx="75" cy="59" r="1.15"/><circle class="st" cx="31" cy="70" r="1.7"/><circle class="st" cx="69" cy="70" r="1.15"/><circle class="st" cx="50" cy="74" r="1.15"/><circle class="st" cx="54" cy="82" r="1.7"/><circle class="st" cx="62" cy="88" r="1.15"/><circle class="st" cx="72" cy="88" r="1.15"/><circle class="st" cx="79" cy="82" r="1.15"/><circle class="st" cx="76" cy="74" r="1.7"/><a href="#" class="main-star" role="button" aria-label="Open the star map (Antares)"><title>Back to the star map</title><circle class="halo" cx="50" cy="48" r="6"/><circle class="core" cx="50" cy="48" r="2.8"/></a></svg></div>
-    <figure class="rv media" id="scorpion-demo"><video class="fr ph" src="newborn-showcase.mp4" poster="newborn-showcase-poster.webp" width="720" height="562" muted loop playsinline preload="none" aria-label="Running live at the STEEL showcase"></video><figcaption>Running live at the STEEL showcase</figcaption></figure>
+    <figure class="rv media" id="scorpion-demo"><video class="fr ph" style="--r:1.2811" src="newborn-showcase.mp4" poster="newborn-showcase-poster.webp" width="720" height="562" muted loop playsinline preload="none" aria-label="Running live at the STEEL showcase"></video><figcaption>Running live at the STEEL showcase</figcaption></figure>
     <h2 class="ttl rv"><span class="disp">Scorpion</span><span class="sub">Robotic hexapod · Project STRIDE</span></h2>
     <p class="sum rv">A servo-driven hexapod built as a scorpion, so the claws and tail add moving parts beyond a basic walker. On a team of seven I designed the tail, the claws, the second-story deck and parts of the front body in SolidWorks, all printed in PETG, and we presented it to industry judges at the UCF STEEL Fall 2026 showcase.</p>
     <div class="facts">
@@ -689,13 +694,13 @@ canvas.m3d.drag{cursor:grabbing}
 <section class="view fit" id="scorpion-gallery" data-label="Scorpion · Showcase" data-sec="projects">
   <div class="kick rv"><span class="lbl"><span class="r">04</span> &nbsp;Scorpion</span><span class="lbl">Showcase day</span></div>
   <div class="board">
-    <figure class="rv" style="grid-area:1/1/5/6;--jx:start;--ay:start"><img class="fr ph" src="newborn-team.webp" alt="Team at the STEEL showcase" width="1600" height="1066" loading="lazy" decoding="async"><figcaption>Team at the STEEL showcase</figcaption></figure>
-    <figure class="rv" style="grid-area:1/6/6/8;--jx:center;--ay:start"><img class="fr ph" src="newborn-standing.webp" alt="Built, tail up" width="1200" height="1600" loading="lazy" decoding="async"><figcaption>Built, tail up</figcaption></figure>
-    <figure class="rv" style="grid-area:1/8/4/13;--jx:end;--ay:start"><img class="fr ph" src="scorp-cad.webp" alt="Full assembly · CAD" width="1140" height="642" loading="lazy" decoding="async"><figcaption>Full assembly · CAD</figcaption></figure>
-    <figure class="rv" style="grid-area:5/1/9/3;--jx:start;--ay:end"><img class="fr ph" src="newborn-judges.webp" alt="Design review" width="1066" height="1600" loading="lazy" decoding="async"><figcaption>Design review</figcaption></figure>
-    <figure class="rv" style="grid-area:6/3/9/5;--jx:center;--ay:end"><img class="fr ph" src="newborn-build.webp" alt="Build &amp;amp; wiring" width="900" height="1600" loading="lazy" decoding="async"><figcaption>Build &amp; wiring</figcaption></figure>
-    <figure class="rv" style="grid-area:4/8/8/11;--jx:center;--ay:center"><img class="fr ph" src="scorp-photo-render.webp" alt="Assembly render" width="525" height="404" loading="lazy" decoding="async"><figcaption>Assembly render</figcaption></figure>
-    <figure class="rv" style="grid-area:4/11/9/13;--jx:end;--ay:end"><img class="fr ph" src="newborn-topview.webp" alt="Top view" width="1200" height="1600" loading="lazy" decoding="async"><figcaption>Top view</figcaption></figure>
+    <figure class="rv" style="grid-area:1/1/5/6;--jx:start;--ay:start"><img class="fr ph" style="--r:1.5009" src="newborn-team.webp" alt="Team at the STEEL showcase" width="1600" height="1066" loading="lazy" decoding="async"><figcaption>Team at the STEEL showcase</figcaption></figure>
+    <figure class="rv" style="grid-area:1/6/6/8;--jx:center;--ay:start"><img class="fr ph" style="--r:0.7500" src="newborn-standing.webp" alt="Built, tail up" width="1200" height="1600" loading="lazy" decoding="async"><figcaption>Built, tail up</figcaption></figure>
+    <figure class="rv" style="grid-area:1/8/4/13;--jx:end;--ay:start"><img class="fr ph" style="--r:1.7757" src="scorp-cad.webp" alt="Full assembly · CAD" width="1140" height="642" loading="lazy" decoding="async"><figcaption>Full assembly · CAD</figcaption></figure>
+    <figure class="rv" style="grid-area:5/1/9/3;--jx:start;--ay:end"><img class="fr ph" style="--r:0.6663" src="newborn-judges.webp" alt="Design review" width="1066" height="1600" loading="lazy" decoding="async"><figcaption>Design review</figcaption></figure>
+    <figure class="rv" style="grid-area:6/3/9/5;--jx:center;--ay:end"><img class="fr ph" style="--r:0.5625" src="newborn-build.webp" alt="Build &amp;amp; wiring" width="900" height="1600" loading="lazy" decoding="async"><figcaption>Build &amp; wiring</figcaption></figure>
+    <figure class="rv" style="grid-area:4/8/8/11;--jx:center;--ay:center"><img class="fr ph" style="--r:1.2995" src="scorp-photo-render.webp" alt="Assembly render" width="525" height="404" loading="lazy" decoding="async"><figcaption>Assembly render</figcaption></figure>
+    <figure class="rv" style="grid-area:4/11/9/13;--jx:end;--ay:end"><img class="fr ph" style="--r:0.7500" src="newborn-topview.webp" alt="Top view" width="1200" height="1600" loading="lazy" decoding="async"><figcaption>Top view</figcaption></figure>
     <div class="note rv" style="grid-area:6/5/9/8;--ay:end;--jx:center"><p class="disp">Team of seven</p><p>Built, driven and presented to industry judges at UCF STEEL, Fall 2026.</p></div>
   </div>
 </section>
@@ -737,8 +742,8 @@ canvas.m3d.drag{cursor:grabbing}
     <text x="182" y="148" class="tq-good">52% less torque,</text><text x="182" y="160" class="tq-good">inside the rating</text>
   </svg></div><figcaption>Center of gravity moves to the body side of the servo</figcaption></figure>
     <div class="sub-board" style="grid-column:10/13;grid-template-columns:1fr 1fr;align-self:center">
-      <figure class="rv"><img class="fr ph" src="tail-final-top.webp" alt="Final tail" width="620" height="820" loading="lazy" decoding="async"><figcaption>Final tail</figcaption></figure>
-      <figure class="rv"><img class="fr ph" src="tail-final-raised.webp" alt="Raised" width="640" height="860" loading="lazy" decoding="async"><figcaption>Raised</figcaption></figure>
+      <figure class="rv"><img class="fr ph" style="--r:0.7561" src="tail-final-top.webp" alt="Final tail" width="620" height="820" loading="lazy" decoding="async"><figcaption>Final tail</figcaption></figure>
+      <figure class="rv"><img class="fr ph" style="--r:0.7442" src="tail-final-raised.webp" alt="Raised" width="640" height="860" loading="lazy" decoding="async"><figcaption>Raised</figcaption></figure>
     </div>
     <div class="seq" style="grid-column:1/-1">
       <div class="rv"><span class="k"><i>A</i> Segments</span><span class="t">First segmented tail</span><p>Base and linked segments in SolidWorks to prove the range of motion.</p></div>
@@ -751,13 +756,13 @@ canvas.m3d.drag{cursor:grabbing}
 <section class="view fit" id="tail-build" data-label="Scorpion · Tail build" data-sec="projects">
   <div class="kick rv"><span class="lbl"><span class="r">04-A</span> &nbsp;Scorpion</span><span class="lbl">Tail, from CAD to bench</span></div>
   <div class="board">
-    <figure class="rv" id="tail-video" style="grid-area:1/1/9/4;--jx:start;--ay:center"><video class="fr ph" src="newborn-tail-test.mp4" poster="newborn-tail-test-poster.webp" width="720" height="844" muted loop playsinline preload="none" aria-label="Tail test on the bench"></video><figcaption>Tail test on the bench</figcaption></figure>
-    <figure class="rv" style="grid-area:1/4/5/8;--jx:center;--ay:start"><img class="fr ph" src="scorp-tail.webp" alt="Rev A tail assembly" width="669" height="576" loading="lazy" decoding="async"><figcaption>Rev A tail assembly</figcaption></figure>
-    <figure class="rv" style="grid-area:1/8/4/13;--jx:end;--ay:start"><img class="fr ph" src="scorp-slicer.webp" alt="Print setup" width="744" height="468" loading="lazy" decoding="async"><figcaption>Print setup</figcaption></figure>
-    <figure class="rv" style="grid-area:5/4/9/6;--jx:start;--ay:end"><img class="fr ph" src="scorp-tail3seg.webp" alt="Segment link" width="700" height="700" loading="lazy" decoding="async"><figcaption>Segment link</figcaption></figure>
-    <figure class="rv" style="grid-area:5/6/9/8;--jx:center;--ay:end"><img class="fr ph" src="scorp-stinger.webp" alt="Stinger end" width="700" height="700" loading="lazy" decoding="async"><figcaption>Stinger end</figcaption></figure>
-    <figure class="rv" style="grid-area:4/8/9/10;--jx:center;--ay:end"><img class="fr ph" src="scorp-tail-servo-platform.webp" alt="Tail servo platform" width="700" height="700" loading="lazy" decoding="async"><figcaption>Tail servo platform</figcaption></figure>
-    <figure class="rv" style="grid-area:4/10/9/13;--jx:end;--ay:end"><img class="fr ph" src="scorp-chain-servo.webp" alt="Rev C chain link · dropped" width="700" height="700" loading="lazy" decoding="async"><figcaption>Rev C chain link · dropped</figcaption></figure>
+    <figure class="rv" id="tail-video" style="grid-area:1/1/9/4;--jx:start;--ay:center"><video class="fr ph" style="--r:0.8531" src="newborn-tail-test.mp4" poster="newborn-tail-test-poster.webp" width="720" height="844" muted loop playsinline preload="none" aria-label="Tail test on the bench"></video><figcaption>Tail test on the bench</figcaption></figure>
+    <figure class="rv" style="grid-area:1/4/5/8;--jx:center;--ay:start"><img class="fr ph" style="--r:1.1615" src="scorp-tail.webp" alt="Rev A tail assembly" width="669" height="576" loading="lazy" decoding="async"><figcaption>Rev A tail assembly</figcaption></figure>
+    <figure class="rv" style="grid-area:1/8/4/13;--jx:end;--ay:start"><img class="fr ph" style="--r:1.5897" src="scorp-slicer.webp" alt="Print setup" width="744" height="468" loading="lazy" decoding="async"><figcaption>Print setup</figcaption></figure>
+    <figure class="rv" style="grid-area:5/4/9/6;--jx:start;--ay:end"><img class="fr ph" style="--r:1.0000" src="scorp-tail3seg.webp" alt="Segment link" width="700" height="700" loading="lazy" decoding="async"><figcaption>Segment link</figcaption></figure>
+    <figure class="rv" style="grid-area:5/6/9/8;--jx:center;--ay:end"><img class="fr ph" style="--r:1.0000" src="scorp-stinger.webp" alt="Stinger end" width="700" height="700" loading="lazy" decoding="async"><figcaption>Stinger end</figcaption></figure>
+    <figure class="rv" style="grid-area:4/8/9/10;--jx:center;--ay:end"><img class="fr ph" style="--r:1.0000" src="scorp-tail-servo-platform.webp" alt="Tail servo platform" width="700" height="700" loading="lazy" decoding="async"><figcaption>Tail servo platform</figcaption></figure>
+    <figure class="rv" style="grid-area:4/10/9/13;--jx:end;--ay:end"><img class="fr ph" style="--r:1.0000" src="scorp-chain-servo.webp" alt="Rev C chain link · dropped" width="700" height="700" loading="lazy" decoding="async"><figcaption>Rev C chain link · dropped</figcaption></figure>
   </div>
 </section>
 <section class="view" id="chassis-design" data-label="Scorpion · Chassis design" data-sec="projects">
@@ -770,9 +775,9 @@ canvas.m3d.drag{cursor:grabbing}
       </div>
     </div>
     <div class="sub-board" style="grid-column:6/13;grid-template-columns:repeat(3,1fr);align-self:center;--cap:40vh">
-      <figure class="rv"><img class="fr neg" src="scorp-body.webp" alt="Main body" width="700" height="700" loading="lazy" decoding="async"><figcaption>Main body</figcaption></figure>
-      <figure class="rv"><img class="fr neg" src="scorp-deck-v3.webp" alt="Deck V3" width="700" height="700" loading="lazy" decoding="async"><figcaption>Deck V3</figcaption></figure>
-      <figure class="rv"><img class="fr neg" src="scorp-deck-v4.webp" alt="Deck V4" width="700" height="700" loading="lazy" decoding="async"><figcaption>Deck V4</figcaption></figure>
+      <figure class="rv"><img class="fr neg" style="--r:1.0000" src="scorp-body.webp" alt="Main body" width="700" height="700" loading="lazy" decoding="async"><figcaption>Main body</figcaption></figure>
+      <figure class="rv"><img class="fr neg" style="--r:1.0000" src="scorp-deck-v3.webp" alt="Deck V3" width="700" height="700" loading="lazy" decoding="async"><figcaption>Deck V3</figcaption></figure>
+      <figure class="rv"><img class="fr neg" style="--r:1.0000" src="scorp-deck-v4.webp" alt="Deck V4" width="700" height="700" loading="lazy" decoding="async"><figcaption>Deck V4</figcaption></figure>
     </div>
     <div class="seq" style="grid-column:1/-1">
       <div class="rv"><span class="k"><i>01</i> Front</span><span class="t">Front body and claws</span><p>Sections of the front body and the claws that mount to it.</p></div>
@@ -784,13 +789,13 @@ canvas.m3d.drag{cursor:grabbing}
 <section class="view fit" id="chassis-build" data-label="Scorpion · Body &amp; claws" data-sec="projects">
   <div class="kick rv"><span class="lbl"><span class="r">04-B</span> &nbsp;Scorpion</span><span class="lbl">Body &amp; claws</span></div>
   <div class="board">
-    <figure class="rv" style="grid-area:1/1/5/5;--jx:start;--ay:start"><img class="fr ph" src="front-body-built.webp" alt="Front body, built" width="980" height="700" loading="lazy" decoding="async"><figcaption>Front body, built</figcaption></figure>
-    <figure class="rv" style="grid-area:1/5/6/8;--jx:center;--ay:start"><img class="fr ph" src="newborn-cad-screen.webp" alt="Head and claw · CAD" width="1512" height="1550" loading="lazy" decoding="async"><figcaption>Head and claw · CAD</figcaption></figure>
-    <figure class="rv" style="grid-area:1/8/4/13;--jx:end;--ay:start"><img class="fr ph" src="scorp-side.webp" alt="Body and decks" width="850" height="448" loading="lazy" decoding="async"><figcaption>Body and decks</figcaption></figure>
-    <figure class="rv" style="grid-area:5/1/9/4;--jx:start;--ay:end"><img class="fr ph" src="scorp-clawmount.webp" alt="Claw mount" width="1189" height="876" loading="lazy" decoding="async"><figcaption>Claw mount</figcaption></figure>
-    <figure class="rv" style="grid-area:6/4/9/7;--jx:center;--ay:end"><img class="fr ph" src="claw-v3.webp" alt="Claw V3: base and moving jaw" width="732" height="712" loading="lazy" decoding="async"><figcaption>Claw V3: base and moving jaw</figcaption></figure>
-    <figure class="rv" style="grid-area:4/8/9/10;--jx:center;--ay:end"><img class="fr ph" src="scorp-assembly.webp" alt="Body + tail" width="800" height="800" loading="lazy" decoding="async"><figcaption>Body + tail</figcaption></figure>
-    <figure class="rv" style="grid-area:4/10/9/13;--jx:end;--ay:end"><img class="fr ph" src="scorp-shell.webp" alt="Shell panels" width="634" height="445" loading="lazy" decoding="async"><figcaption>Shell panels</figcaption></figure>
+    <figure class="rv" style="grid-area:1/1/5/5;--jx:start;--ay:start"><img class="fr ph" style="--r:1.4000" src="front-body-built.webp" alt="Front body, built" width="980" height="700" loading="lazy" decoding="async"><figcaption>Front body, built</figcaption></figure>
+    <figure class="rv" style="grid-area:1/5/6/8;--jx:center;--ay:start"><img class="fr ph" style="--r:0.9755" src="newborn-cad-screen.webp" alt="Head and claw · CAD" width="1512" height="1550" loading="lazy" decoding="async"><figcaption>Head and claw · CAD</figcaption></figure>
+    <figure class="rv" style="grid-area:1/8/4/13;--jx:end;--ay:start"><img class="fr ph" style="--r:1.8973" src="scorp-side.webp" alt="Body and decks" width="850" height="448" loading="lazy" decoding="async"><figcaption>Body and decks</figcaption></figure>
+    <figure class="rv" style="grid-area:5/1/9/4;--jx:start;--ay:end"><img class="fr ph" style="--r:1.3573" src="scorp-clawmount.webp" alt="Claw mount" width="1189" height="876" loading="lazy" decoding="async"><figcaption>Claw mount</figcaption></figure>
+    <figure class="rv" style="grid-area:6/4/9/7;--jx:center;--ay:end"><img class="fr ph" style="--r:1.0281" src="claw-v3.webp" alt="Claw V3: base and moving jaw" width="732" height="712" loading="lazy" decoding="async"><figcaption>Claw V3: base and moving jaw</figcaption></figure>
+    <figure class="rv" style="grid-area:4/8/9/10;--jx:center;--ay:end"><img class="fr ph" style="--r:1.0000" src="scorp-assembly.webp" alt="Body + tail" width="800" height="800" loading="lazy" decoding="async"><figcaption>Body + tail</figcaption></figure>
+    <figure class="rv" style="grid-area:4/10/9/13;--jx:end;--ay:end"><img class="fr ph" style="--r:1.4247" src="scorp-shell.webp" alt="Shell panels" width="634" height="445" loading="lazy" decoding="async"><figcaption>Shell panels</figcaption></figure>
   </div>
   <a class="next lbl" href="#fsi" data-go="fsi">Next <b>05 S.A.I.L. <span class="arr">→</span></b></a>
 </section>
@@ -843,10 +848,10 @@ canvas.m3d.drag{cursor:grabbing}
       </div>
     </div>
     <div class="sub-board" style="grid-column:6/13;grid-template-columns:1fr 1fr;align-self:center;--cap:30vh">
-      <figure class="rv"><img class="fr neg" src="sail-spacecraft.webp" alt="Observation sat · 6U" width="630" height="579" loading="lazy" decoding="async"><figcaption>Observation sat · 6U</figcaption></figure>
-      <figure class="rv"><img class="fr neg" src="sail-conops.webp" alt="Observation CONOPS" width="1100" height="549" loading="lazy" decoding="async"><figcaption>Observation CONOPS</figcaption></figure>
-      <figure class="rv"><img class="fr neg" src="sail-modes.webp" alt="Modes &amp;amp; fault handling" width="1100" height="619" loading="lazy" decoding="async"><figcaption>Modes &amp; fault handling</figcaption></figure>
-      <figure class="rv"><img class="fr neg" src="sail-timeline.webp" alt="Timeline &amp;amp; checkpoints" width="1100" height="619" loading="lazy" decoding="async"><figcaption>Timeline &amp; checkpoints</figcaption></figure>
+      <figure class="rv"><img class="fr neg" style="--r:1.0881" src="sail-spacecraft.webp" alt="Observation sat · 6U" width="630" height="579" loading="lazy" decoding="async"><figcaption>Observation sat · 6U</figcaption></figure>
+      <figure class="rv"><img class="fr neg" style="--r:2.0036" src="sail-conops.webp" alt="Observation CONOPS" width="1100" height="549" loading="lazy" decoding="async"><figcaption>Observation CONOPS</figcaption></figure>
+      <figure class="rv"><img class="fr neg" style="--r:1.7771" src="sail-modes.webp" alt="Modes &amp;amp; fault handling" width="1100" height="619" loading="lazy" decoding="async"><figcaption>Modes &amp; fault handling</figcaption></figure>
+      <figure class="rv"><img class="fr neg" style="--r:1.7771" src="sail-timeline.webp" alt="Timeline &amp;amp; checkpoints" width="1100" height="619" loading="lazy" decoding="async"><figcaption>Timeline &amp; checkpoints</figcaption></figure>
     </div>
     <div class="seq" style="grid-column:1/-1">
       <div class="rv"><span class="k"><i>Min</i> 4 sats</span><span class="t">Minimum success</span><p>At least 4 deployed and in contact; a stable crosslink moving 2 GB a day; link metrics to the ground.</p></div>
@@ -868,8 +873,8 @@ canvas.m3d.drag{cursor:grabbing}
       <div class="num rv"><b>$4–8M</b><span class="lbl">Program cost</span><p>Six 6U CubeSats with launch, ground network time and laser terminals</p></div>
     </div>
     <div class="sub-board" style="grid-column:8/13;grid-template-columns:1fr;align-self:start;--cap:31vh">
-      <figure class="rv"><img class="fr neg" src="sail-storage.webp" alt="Storage budget, one day" width="1080" height="490" loading="lazy" decoding="async"><figcaption>Storage budget, one day</figcaption></figure>
-      <figure class="rv"><img class="fr neg" src="sail-battery.webp" alt="Battery capacity by mode" width="520" height="590" loading="lazy" decoding="async"><figcaption>Battery capacity by mode</figcaption></figure>
+      <figure class="rv"><img class="fr neg" style="--r:2.2041" src="sail-storage.webp" alt="Storage budget, one day" width="1080" height="490" loading="lazy" decoding="async"><figcaption>Storage budget, one day</figcaption></figure>
+      <figure class="rv"><img class="fr neg" style="--r:0.8814" src="sail-battery.webp" alt="Battery capacity by mode" width="520" height="590" loading="lazy" decoding="async"><figcaption>Battery capacity by mode</figcaption></figure>
     </div>
   </div>
 </section>
@@ -923,10 +928,37 @@ html.classList.add('js');
 var reduce=W.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var views=[].slice.call(D.querySelectorAll('.view'));
 function viewOf(id){var el=D.getElementById(id);return el?(el.closest('.view')||el):null}
-function go(id){var v=viewOf(id);if(!v)return;v.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+function go(id){var v=viewOf(id);if(!v)return;if(desk.matches&&!reduce)animTo(v.offsetTop);else v.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
   if(v.hasAttribute('data-grp')){v.classList.remove('flash');void v.offsetWidth;v.classList.add('flash')}
   top.classList.remove('menu-open');menu.setAttribute('aria-expanded','false')}
 var top=D.getElementById('top'), menu=D.getElementById('menu');
+
+/* ---------- calm page-by-page scrolling (desktop) ----------
+   One wheel gesture = one page, with an eased glide. Trackpad momentum is absorbed:
+   the next page only comes after the gesture has paused. Pages taller than the
+   screen scroll normally until their edge. */
+var desk=W.matchMedia('(min-width:900px) and (min-height:600px)'),anim=false,lock=0,acc=0,accT=0;
+function animTo(y){y=Math.max(0,Math.min(y,D.documentElement.scrollHeight-innerHeight));var y0=scrollY,d=y-y0;if(Math.abs(d)<2)return;
+  var dur=Math.min(1250,Math.max(780,Math.abs(d)/innerHeight*520+420)),t0=null;anim=true;
+  function f(t){if(t0===null)t0=t;var k=Math.min(1,(t-t0)/dur),e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;W.scrollTo(0,y0+d*e);
+    if(k<1)requestAnimationFrame(f);else{anim=false;lock=performance.now()+260}}requestAnimationFrame(f)}
+function viewAt(){var c=scrollY+innerHeight/2;for(var i=0;i<views.length;i++){var v=views[i];if(c>=v.offsetTop&&c<v.offsetTop+v.offsetHeight)return v}return views[views.length-1]}
+function step(dir){var v=viewAt(),i=views.indexOf(v),j=Math.max(0,Math.min(views.length-1,i+dir));if(j===i)return;var n=views[j];
+  animTo(dir<0&&n.offsetHeight>innerHeight+4?n.offsetTop+n.offsetHeight-innerHeight:n.offsetTop)}
+W.addEventListener('wheel',function(e){if(!desk.matches||reduce||e.ctrlKey||(W.m3live&&W.m3live())||D.getElementById('lb').classList.contains('open'))return;
+  var v=viewAt(),r=v.getBoundingClientRect(),dy=e.deltaY;
+  if(!anim){if(dy>0&&r.bottom>innerHeight+2)return;if(dy<0&&r.top<-2)return}
+  e.preventDefault();var now=performance.now();
+  if(anim||now<lock){lock=Math.max(lock,now+220);return}
+  if(now-accT>200)acc=0;accT=now;acc+=dy;if(Math.abs(acc)<35)return;acc=0;step(dy>0?1:-1)},{passive:false});
+D.addEventListener('keydown',function(e){if(!desk.matches||reduce||e.altKey||e.metaKey||e.ctrlKey||(W.m3live&&W.m3live())||D.getElementById('lb').classList.contains('open'))return;
+  if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;var k=e.key,v=viewAt(),r=v.getBoundingClientRect();
+  if(k==='ArrowDown'||k==='PageDown'||(k===' '&&!e.shiftKey)){if(r.bottom>innerHeight+2)return;e.preventDefault();if(!anim)step(1)}
+  else if(k==='ArrowUp'||k==='PageUp'||(k===' '&&e.shiftKey)){if(r.top<-2)return;e.preventDefault();if(!anim)step(-1)}
+  else if(k==='Home'){e.preventDefault();animTo(0)}else if(k==='End'){e.preventDefault();animTo(1e9)}});
+/* settle onto the nearest page after a scrollbar drag, resize or deep link */
+var settleT;W.addEventListener('scroll',function(){if(anim||!desk.matches||reduce)return;clearTimeout(settleT);settleT=setTimeout(function(){
+  var v=viewAt();if(v.offsetHeight>innerHeight+4)return;var d=v.offsetTop-scrollY;if(Math.abs(d)>2&&Math.abs(d)<innerHeight*.5)animTo(v.offsetTop)},180)},{passive:true});
 D.addEventListener('click',function(e){var a=e.target.closest('[data-go]');if(!a)return;
   if(a.id==='pnode')return; e.preventDefault(); go(a.getAttribute('data-go'));});
 menu.addEventListener('click',function(){var o=top.classList.toggle('menu-open');menu.setAttribute('aria-expanded',o)});
@@ -936,7 +968,7 @@ var rail=D.getElementById('rail');
 views.forEach(function(v,i){var b=D.createElement('button');b.type='button';
   b.innerHTML='<i></i><span>'+v.getAttribute('data-label')+'</span>';b.setAttribute('aria-label',v.getAttribute('data-label').replace(/&amp;/g,'&'));
   if(v.hasAttribute('data-grp')||v.id==='projects'||v.id==='leadership')b.className='grp';
-  b.addEventListener('click',function(){v.scrollIntoView({behavior:reduce?'auto':'smooth'})});rail.appendChild(b);v._dot=b;});
+  b.addEventListener('click',function(){go(v.id)});rail.appendChild(b);v._dot=b;});
 
 /* stagger index */
 views.forEach(function(v){[].forEach.call(v.querySelectorAll('.rv'),function(el,i){el.style.setProperty('--i',Math.min(i,14))})});
@@ -1094,7 +1126,7 @@ if(m3.gl){(function(){var gl=m3.gl;
   var lx=0,ly=0,moved=0,hint=D.getElementById('m3dhint');
   function setLive(on){m3.live=on;m3.wrap.classList.toggle('live',on);m3.cv.style.touchAction=on?'none':'pan-y';
     hint.textContent=on?'Scroll to assemble · click to release':'Click the model to control it'}
-  m3.setLive=setLive;
+  m3.setLive=setLive;W.m3live=function(){return m3.live};
   m3.cv.addEventListener('pointerdown',function(e){m3.drag=true;moved=0;lx=e.clientX;ly=e.clientY;m3.cv.setPointerCapture(e.pointerId);m3.cv.classList.add('drag')});
   m3.cv.addEventListener('pointermove',function(e){if(!m3.drag)return;var dx=e.clientX-lx,dy=e.clientY-ly;lx=e.clientX;ly=e.clientY;moved+=Math.abs(dx)+Math.abs(dy);
     if(m3.live&&e.pointerType!=='mouse'){m3.t=Math.max(0,Math.min(1,m3.t+dy*-.004));m3.vy=dx*.008;m3.yaw+=m3.vy;return}
